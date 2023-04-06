@@ -2,7 +2,7 @@
 # Introduction to Neo4j
 Neo4j is a graph database management system that is used to store, manage, and query large, complex graphs. It is designed to handle highly connected data and to enable efficient traversal of relationships between nodes. In this notebook, we will explore the basic concepts of Neo4j and learn how to use it to create, query, and manipulate graph data.
 ## Installing Neo4j
-Before we get started, you need to have Neo4j installed on your system. You can download the appropriate version of Neo4j for your operating system from the official website: [https://neo4j.com/download/](https://neo4j.com/download/" target="_new).
+Before we get started, you need to have Neo4j installed on your system. You can download the appropriate version of Neo4j for your operating system from the official website:  https://neo4j.com/download/
 ## Basic Concepts
 In Neo4j, data is stored as a set of nodes and relationships between them. Nodes represent entities in the graph, and relationships represent connections between those entities. Both nodes and relationships can have properties, which are key-value pairs that provide additional information about the entity.
 ### Nodes
