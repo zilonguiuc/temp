@@ -182,16 +182,39 @@ db.products.find(
 )
 
 ```
-
+Output
+```lua
+{
+  name: 'Product 1',
+  price: 15
+}
+{
+  name: 'Product 2',
+  price: 20
+}
+```lua
 
 This will return a cursor to all documents in the "products" collection with the "category" field set to "Category 1", with only the "name" and "price" fields included in the results.
 ## Step 13: Limit the number of results
 To limit the number of results returned by a query, use the `limit()` method on the cursor returned by the `find()` method. For example, to retrieve only the first two products in the "products" collection, run the following command:
 ```scss
 products = db.products.find().limit(2)
-for product in products:
-    print(product)
-
+ 
+```
+Output
+```scss
+{
+  _id: ObjectId("643070ef92a85fbdb1811d9c"),
+  name: 'Product 1',
+  price: 15,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9d"),
+  name: 'Product 2',
+  price: 20,
+  category: 'Category 1'
+}
 ```
 This will return a cursor to the first two documents in the "products" collection.
 ## Step 14: Skip results
