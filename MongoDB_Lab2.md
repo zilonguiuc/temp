@@ -447,6 +447,7 @@ This will delete all documents in the "products" collection.
 ## Step 23: Insert nested documents in a collection
 You can use the insertMany() method to insert three new documents into the products collection in the productdb database. Each document has a name, price, category, and details field, with nested fields for size and quantity. The documents represent products with different categories, sizes, quantities, and prices.
 ```bash 
+db.products.insertMany([
   {
     name: "Product 1",
     price: 10,
@@ -492,51 +493,123 @@ insertion is successful.
 To update a nested field in a document in the "products" collection, use dot notation in the update query. For example, to update the "quantity" field of a product with a specific name and size, run the following command:
 ```bash
 db.products.updateOne(
-    {"name": "Product 1", "size": "small"},
+    {"name": "Product 1", "details.size": "small"},
     {"$set": {"details.quantity": 10}}
 )
 
 ```
-This will update the "quantity" field in the "details" sub-document of the "Product 1" document with the "size" field set to "small".
-## Step 23: Increment a field value
+Output
+```bash
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+```
+This will update the "quantity" field in the "details" sub-document of the "Product 1" document with the "details.size" field set to "small".
+## Step 25: Increment a field value
 To increment a field value in a document in the "products" collection, use the `$inc` operator in the update query. For example, to increment the "quantity" field of a product with a specific name and size by 5, run the following command:
 ```bash
 db.products.updateOne(
-    {"name": "Product 1", "size": "small"},
+    {"name": "Product 1", "details.size": "small"},
     {"$inc": {"details.quantity": 5}}
 )
 
 ```
-This will increment the "quantity" field in the "details" sub-document of the "Product 1" document with the "size" field set to "small" by 5.
-## Step 24: Rename a field
+Output
+```bash
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+```
+This will increment the "quantity" field in the "details" sub-document of the "Product 1" document with the "size" field set to "small" by 5. (so 10 increase to 15)
+## Step 26: Rename a field
 To rename a field in a document in the "products" collection, use the `$rename` operator in the update query. For example, to rename the "category" field to "product_category" in a specific product document, run the following command:
 ```bash
 db.products.updateOne(
-    {"name": "Product 1", "size": "small"},
+    {"name": "Product 1", "details.size": "small"},
     {"$rename": {"category": "product_category"}}
 )
 
 ```
-This will rename the "category" field to "product_category" in the "Product 1" document with the "size" field set to "small".
-## Step 25: Remove a field
+Output
+```bash
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+```
+
+This will rename the "category" field to "product_category" in the "Product 1" document with the "details.size" field set to "small".
+## Step 27: Remove a field
 To remove a field from a document in the "products" collection, use the `$unset` operator in the update query. For example, to remove the "details" sub-document from a specific product document, run the following command:
 ```bash
 db.products.updateOne(
-    {"name": "Product 1", "size": "small"},
+    {"name": "Product 1", "details.size": "small"},
     {"$unset": {"details": ""}}
 )
 
 ```
-This will remove the "details" sub-document from the "Product 1" document with the "size" field set to "small".
+Output
+```bash
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+```
+This will remove the "details" sub-document from the "Product 1" document with the "details.size" field set to "small".
 
-## Step 26: Delete a collection
+Try print out all collection one more time use db.products.find(), you will see below
+```bash
+db.products.find()
+{
+  _id: ObjectId("6430782c92a85fbdb1811da3"),
+  name: 'Product 1',
+  price: 10,
+  product_category: 'Category 1'
+}
+{
+  _id: ObjectId("6430782c92a85fbdb1811da4"),
+  name: 'Product 2',
+  price: 20,
+  category: 'Category 2',
+  details: {
+    size: 'medium',
+    quantity: 10
+  }
+}
+{
+  _id: ObjectId("6430782c92a85fbdb1811da5"),
+  name: 'Product 3',
+  price: 30,
+  category: 'Category 3',
+  details: {
+    size: 'large',
+    quantity: 15
+  }
+}
+```
+
+## Step 28: Delete a collection
 To delete a collection from a database in MongoDB, use the `drop()` method on the collection object. For example, to delete the "products" collection from the current database, run the following command:
 ```scss
 db.products.drop()
 
 ```
 This will delete the "products" collection from the current database.
-## Step 27: Delete a database
+## Step 29: Delete a database
 To delete a database in MongoDB, use the `dropDatabase()` method on the database object. For example, to delete the "mydb" database, run the following command:
 ```perl
 use mydb
