@@ -267,7 +267,7 @@ These are just a few more steps for working with a product database in MongoDB u
  --------
  
  ## Step 16: Query with an OR condition
-To query the "products" collection with an OR condition, use the `$or` operator in the filter query passed to the `find()` method. For example, to retrieve all products in the "Category 1" category with a price greater than or equal to 20.0 OR in the "Category 2" category with a price less than or equal to 10.0, run the following command:
+To query the "products" collection with an OR condition, use the `$or` operator in the filter query passed to the `find()` method. For example, to retrieve all products in the "Category 1" category with a price greater than or equal to 20.0 OR in the "Category 2" category with a price less than or equal to 40.0, run the following command:
 ```bash
 db.products.find({
     "$or": [
@@ -301,15 +301,46 @@ db.products.find({
 })
 
 ```
+Output
+```bash
+{
+  _id: ObjectId("643070ef92a85fbdb1811d9c"),
+  name: 'Product 1',
+  price: 15,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9d"),
+  name: 'Product 2',
+  price: 20,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9e"),
+  name: 'Product 3',
+  price: 30,
+  category: 'Category 2'
+}
+```
 This will return a cursor to all documents in the "products" collection that have a "category" field value of either "Category 1" or "Category 2".
 ## Step 18: Query with a regular expression
 To query the "products" collection with a regular expression, use the `$regex` operator in the filter query passed to the `find()` method. For example, to retrieve all products in the "products" collection with a name that starts with "Product", run the following command:
 ```bash
 db.products.find({
-    "name": {"$regex": "^Product"}
+    "name": {"$regex": "^Product 1"}
 })
 
 ```
+Output
+```bash
+{
+  _id: ObjectId("643070ef92a85fbdb1811d9c"),
+  name: 'Product 1',
+  price: 15,
+  category: 'Category 1'
+}
+```
+
 This will return a cursor to all documents in the "products" collection with a "name" field value that starts with "Product".
 ## Step 19: Query with an exists operator
 To query the "products" collection with an exists operator, use the `$exists` operator in the filter query passed to the `find()` method. For example, to retrieve all products in the "products" collection that have a "description" field, run the following command:
@@ -319,7 +350,40 @@ db.products.find({
 })
 
 ```
+Output
+```bash
+Nothing returned
+``` 
 This will return a cursor to all documents in the "products" collection that have a "description" field.
+
+```bash
+db.products.find({
+    "description": {"$exists": false}
+})
+
+```
+Output
+```bash
+{
+  _id: ObjectId("643070ef92a85fbdb1811d9c"),
+  name: 'Product 1',
+  price: 15,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9d"),
+  name: 'Product 2',
+  price: 20,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9e"),
+  name: 'Product 3',
+  price: 30,
+  category: 'Category 2'
+}
+``` 
+This will return a cursor to all documents in the "products" collection that do not have a "description" field.
 ## Step 20: Query with a comparison operator
 To query the "products" collection with a comparison operator, use operators such as `$lt`, `$lte`, `$gt`, and `$gte` in the filter query passed to the `find()` method. For example, to retrieve all products in the "products" collection with a price less than or equal to 20.0, run the following command:
 ```bash
