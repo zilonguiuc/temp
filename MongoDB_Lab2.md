@@ -150,6 +150,13 @@ To delete documents from the "products" collection, use the `db.products.deleteO
 db.products.deleteOne({"name": "Product 4"})
 
 ```
+Output
+```json
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+```
 This will delete the "Product 4" document from the "products" collection.
 These are just some basic steps for creating a product database in MongoDB using the MongoDB shell. There are many more advanced features and techniques you can use with MongoDB and Pymongo to create more complex databases and applications.
 
@@ -159,6 +166,10 @@ To create an index on a field in the "products" collection, use the `db.products
 ```json
 db.products.createIndex({"name": 1})
 
+```
+Output
+```json
+'name_1'
 ```
 This will create an ascending index on the "name" field in the "products" collection.
 
@@ -171,6 +182,8 @@ db.products.find(
 )
 
 ```
+
+
 This will return a cursor to all documents in the "products" collection with the "category" field set to "Category 1", with only the "name" and "price" fields included in the results.
 ## Step 13: Limit the number of results
 To limit the number of results returned by a query, use the `limit()` method on the cursor returned by the `find()` method. For example, to retrieve only the first two products in the "products" collection, run the following command:
