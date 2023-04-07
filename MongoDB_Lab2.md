@@ -28,6 +28,11 @@ To create a new database in MongoDB, use the `use` command followed by the name 
 use productdb
 
 ```
+output
+```perl
+'switched to db productdb'
+```
+
 This will create a new database called "productdb" if it does not already exist, or switch to the "productdb" database if it does exist.
 ## Step 5: Create a new collection
 To create a new collection in MongoDB, use the `db.createCollection()` method followed by the name of the collection you want to create. For example, to create a new collection called "products", run the following command:
@@ -35,6 +40,12 @@ To create a new collection in MongoDB, use the `db.createCollection()` method fo
 db.createCollection("products")
 
 ```
+Output
+```css
+{ok: 1}
+
+```
+
 This will create a new collection called "products" in the "productdb" database.
 ## Step 6: Insert data into the collection
 To insert data into the "products" collection, use the `db.products.insertOne()` method followed by a JSON object representing the data you want to insert. For example, to insert a new product into the "products" collection, run the following command:
