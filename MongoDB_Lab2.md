@@ -429,7 +429,66 @@ Output
 
 ```
 This will update the price of all documents in the "products" collection with the "category" field set to "Category 1" to 25.0.
-## Step 22: Update a nested field
+## Step 22: Drop all documents in a collection
+To drop all records from the "products" collection in MongoDB, you can use the deleteMany() method with an empty filter object {}. This will match all documents in the collection and delete them. Here's an example:
+
+```bash 
+db.products.deleteMany({})
+```
+Output
+```bash 
+{
+  acknowledged: true,
+  deletedCount: 6
+}
+```
+This will delete all documents in the "products" collection.
+
+## Step 23: Insert nested documents in a collection
+You can use the insertMany() method to insert three new documents into the products collection in the productdb database. Each document has a name, price, category, and details field, with nested fields for size and quantity. The documents represent products with different categories, sizes, quantities, and prices.
+```bash 
+  {
+    name: "Product 1",
+    price: 10,
+    category: "Category 1",
+    details: {
+      size: "small",
+      quantity: 5
+    }
+  },
+  {
+    name: "Product 2",
+    price: 20,
+    category: "Category 2",
+    details: {
+      size: "medium",
+      quantity: 10
+    }
+  },
+  {
+    name: "Product 3",
+    price: 30,
+    category: "Category 3",
+    details: {
+      size: "large",
+      quantity: 15
+    }
+  }
+]);
+```
+Output
+```bash 
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6430764492a85fbdb1811da0"),
+    '1': ObjectId("6430764492a85fbdb1811da1"),
+    '2': ObjectId("6430764492a85fbdb1811da2")
+  }
+}
+```
+insertion is successful.
+## Step 24: Update a nested field
 To update a nested field in a document in the "products" collection, use dot notation in the update query. For example, to update the "quantity" field of a product with a specific name and size, run the following command:
 ```bash
 db.products.updateOne(
