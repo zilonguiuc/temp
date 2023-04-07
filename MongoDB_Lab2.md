@@ -223,12 +223,42 @@ To skip a certain number of results before returning the remaining results, use 
 products = db.products.find().skip(2)
 
 ```
+Output
+```scss
+{
+  _id: ObjectId("6430712692a85fbdb1811d9e"),
+  name: 'Product 3',
+  price: 30,
+  category: 'Category 2'
+}
+```
 This will return a cursor to all documents in the "products" collection, except for the first two.
 ## Step 15: Sort results
 To sort the results of a query, use the `sort()` method on the cursor returned by the `find()` method. For example, to retrieve all products in the "products" collection sorted by price in ascending order, run the following command:
 ```lua
 products = db.products.find().sort("price")
 
+```
+Output
+```lua
+{
+  _id: ObjectId("643070ef92a85fbdb1811d9c"),
+  name: 'Product 1',
+  price: 15,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9d"),
+  name: 'Product 2',
+  price: 20,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9e"),
+  name: 'Product 3',
+  price: 30,
+  category: 'Category 2'
+}
 ```
 This will return a cursor to all documents in the "products" collection, sorted by price in ascending order.
 These are just a few more steps for working with a product database in MongoDB using the MongoDB shell. There are many more features and techniques you can use to create complex queries and manage your database.
@@ -242,10 +272,25 @@ To query the "products" collection with an OR condition, use the `$or` operator 
 db.products.find({
     "$or": [
         {"category": "Category 1", "price": {"$gte": 20.0}},
-        {"category": "Category 2", "price": {"$lte": 10.0}}
+        {"category": "Category 2", "price": {"$lte": 40.0}}
     ]
 })
 
+```
+Output
+```bash
+{
+  _id: ObjectId("6430712692a85fbdb1811d9d"),
+  name: 'Product 2',
+  price: 20,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9e"),
+  name: 'Product 3',
+  price: 30,
+  category: 'Category 2'
+}
 ```
 This will return a cursor to all documents in the "products" collection that match either of the two conditions.
 ## Step 17: Query with an IN operator
