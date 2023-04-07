@@ -57,6 +57,14 @@ db.products.insertOne({
 })
 
 ```
+Output
+```css
+{
+  acknowledged: true,
+  insertedId: ObjectId("643070ef92a85fbdb1811d9c")
+}
+```
+
 This will insert a new document into the "products" collection with the "name", "price", and "category" fields set to the specified values.
 ## Step 7: Insert multiple documents into the collection
 To insert multiple documents into the "products" collection, use the `db.products.insertMany()` method followed by an array of JSON objects representing the data you want to insert. For example, to insert two new products into the "products" collection, run the following command:
@@ -67,6 +75,18 @@ db.products.insertMany([
             {        "name": "Product 4",        "price": 30.0,        "category": "Category 4"    }])
 
 ```
+Output
+```css
+ {
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6430712692a85fbdb1811d9d"),
+    '1': ObjectId("6430712692a85fbdb1811d9e"),
+    '2': ObjectId("6430712692a85fbdb1811d9f")
+  }
+}
+```
+
 This will insert two new documents into the "products" collection with the "name", "price", and "category" fields set to the specified values.
 ## Step 8: Query the collection
 To query the "products" collection, use the `db.products.find()` method. For example, to retrieve all documents in the "products" collection, run the following command:
@@ -74,6 +94,35 @@ To query the "products" collection, use the `db.products.find()` method. For exa
 db.products.find()
 
 ```
+
+Output
+```css
+{
+  _id: ObjectId("643070ef92a85fbdb1811d9c"),
+  name: 'Product 1',
+  price: 10,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9d"),
+  name: 'Product 2',
+  price: 20,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9e"),
+  name: 'Product 3',
+  price: 30,
+  category: 'Category 2'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9f"),
+  name: 'Product 4',
+  price: 30,
+  category: 'Category 4'
+}
+```
+
 This will return a cursor to all documents in the "products" collection.
 ## Step 9: Update documents in the collection
 To update documents in the "products" collection, use the `db.products.updateOne()` or `db.products.updateMany()` method followed by a filter query and an update query. For example, to update the price of a single product in the "products" collection, run the following command:
@@ -83,6 +132,16 @@ db.products.updateOne(
     {"$set": {"price": 15.0}}
 )
 
+```
+Output
+```css
+ {
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
 ```
 This will update the price of the "Product 1" document in the "products" collection to 15.0.
 ## Step 10: Delete documents from the collection
