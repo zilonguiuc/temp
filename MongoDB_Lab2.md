@@ -392,10 +392,22 @@ db.products.find({
 })
 
 ```
+Output
+```bash
+{
+  _id: ObjectId("643070ef92a85fbdb1811d9c"),
+  name: 'Product 1',
+  price: 15,
+  category: 'Category 1'
+}
+{
+  _id: ObjectId("6430712692a85fbdb1811d9d"),
+  name: 'Product 2',
+  price: 20,
+  category: 'Category 1'
+}
+```
 This will return a cursor to all documents in the "products" collection that have a "price" field value less than or equal to 20.0.
-
-
- 
 ## Step 21: Update multiple documents with a filter query
 To update multiple documents in the "products" collection with a filter query, use the `updateMany()` method. For example, to update the price of all products in the "Category 1" category to 25.0, run the following command:
 ```bash
@@ -403,6 +415,17 @@ db.products.updateMany(
     {"category": "Category 1"},
     {"$set": {"price": 25.0}}
 )
+
+```
+Output
+```bash
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
 
 ```
 This will update the price of all documents in the "products" collection with the "category" field set to "Category 1" to 25.0.
