@@ -1,5 +1,5 @@
   
-# MongoDB Lab 2 (Intermediate) 
+# MongoDB Lab 2 (Intermediate Lab) 
 
 This manual covers MongoDB basic CRUD operations
 
