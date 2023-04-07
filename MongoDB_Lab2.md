@@ -192,7 +192,7 @@ Output
   name: 'Product 2',
   price: 20
 }
-```lua
+```
 
 This will return a cursor to all documents in the "products" collection with the "category" field set to "Category 1", with only the "name" and "price" fields included in the results.
 ## Step 13: Limit the number of results
@@ -221,8 +221,6 @@ This will return a cursor to the first two documents in the "products" collectio
 To skip a certain number of results before returning the remaining results, use the `skip()` method on the cursor returned by the `find()` method. For example, to retrieve all products in the "products" collection except for the first two, run the following command:
 ```scss
 products = db.products.find().skip(2)
-for product in products:
-    print(product)
 
 ```
 This will return a cursor to all documents in the "products" collection, except for the first two.
@@ -230,8 +228,6 @@ This will return a cursor to all documents in the "products" collection, except 
 To sort the results of a query, use the `sort()` method on the cursor returned by the `find()` method. For example, to retrieve all products in the "products" collection sorted by price in ascending order, run the following command:
 ```lua
 products = db.products.find().sort("price")
-for product in products:
-    print(product)
 
 ```
 This will return a cursor to all documents in the "products" collection, sorted by price in ascending order.
