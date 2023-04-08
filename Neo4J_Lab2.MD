@@ -86,7 +86,9 @@ CREATE (:Person {name: 'Charlie', age: 35, city: 'San Francisco'})
 CREATE (:Group {name: 'Neo4j User Group', location: 'Online'})
 CREATE (:Group {name: 'Data Science Club', location: 'New York'})
 CREATE (:Group {name: 'Hiking Club', location: 'Los Angeles'})
-
+```
+Next, creating the relationships
+```
 MATCH (alice:Person {name: 'Alice'}), (bob:Person {name: 'Bob'}), (charlie:Person {name: 'Charlie'}),
       (neo4jGroup:Group {name: 'Neo4j User Group'}), (dataScienceClub:Group {name: 'Data Science Club'}),
       (hikingClub:Group {name: 'Hiking Club'})
