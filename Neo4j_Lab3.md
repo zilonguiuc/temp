@@ -1,10 +1,10 @@
 # Step-by-step instructions for creating a Neo4j database for bank credit cards with CRUD operations, aggregation, joins, and indexing, as follows:
 
-### 1. Install Neo4j: Download and install Neo4j Desktop from the Neo4j website (https://neo4j.com/download/).
+#### 1. Install Neo4j: Download and install Neo4j Desktop from the Neo4j website (https://neo4j.com/download/).
 
-### 2. Create a new project: Open Neo4j Desktop, click on "Create a New Project," and give it a name (e.g., "BankCreditCards").
+#### 2. Create a new project: Open Neo4j Desktop, click on "Create a New Project," and give it a name (e.g., "BankCreditCards").
 
-### 3. Create a new database: Within the newly created project, click on "Add Database" and choose "Create a Local Database." Give it a name (e.g., "BankCreditCardsDB").
+#### 3. Create a new database: Within the newly created project, click on "Add Database" and choose "Create a Local Database." Give it a name (e.g., "BankCreditCardsDB").
 
 ### 4. Start the database: Select the newly created database and click on "Start."
 
@@ -24,17 +24,20 @@ CREATE (:CreditCard {card_number: "1234567890123456", card_type: "Visa", card_li
 
 ### 8. Create a relationship between "Customer" and "CreditCard" nodes: Use the following command to create a "OWNS" relationship between the "Customer" and "CreditCard" nodes:
 
+```
 MATCH (c:Customer), (cc:CreditCard) WHERE c.customer_id = 1234 AND cc.card_number = "1234567890123456" CREATE (c)-[:OWNS]->(cc)
+```
 
-View the graph: Refresh the Neo4j Browser and click on the "Graph" tab to see the nodes and their relationship.
-
+### 9. View the graph: Refresh the Neo4j Browser and click on the "Graph" tab to see the nodes and their relationship.
 Create an "Address" node: Use the following command to create an "Address" node:
-
+```
 CREATE (:Address {address_id: 123, street: "123 Main St", city: "San Francisco", state: "CA", zip_code: "94101"})
+```
 
-Create a relationship between "Customer" and "Address" nodes: Use the following command to create a "LIVES_AT" relationship between the "Customer" and "Address" nodes:
-
+### 10. Create a relationship between "Customer" and "Address" nodes: Use the following command to create a "LIVES_AT" relationship between the "Customer" and "Address" nodes:
+```
 MATCH (c:Customer), (a:Address) WHERE c.customer_id = 1234 AND a.address_id = 123 CREATE (c)-[:LIVES_AT]->(a)
+```
 
 View the graph: Refresh the Neo4j Browser and click on the "Graph" tab to see the nodes and their relationships.
 
