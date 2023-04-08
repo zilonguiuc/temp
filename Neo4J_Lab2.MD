@@ -54,6 +54,9 @@ Once you have data stored in Neo4j, you can query it using the Cypher query lang
 CREATE (:Person {name: 'Alice', age: 25, city: 'New York'})
 CREATE (:Person {name: 'Bob', age: 30, city: 'Los Angeles'})
 CREATE (:Person {name: 'Charlie', age: 35, city: 'San Francisco'})
+CREATE (:Group {name: 'Neo4j User Group', location: 'Online'})
+CREATE (:Group {name: 'Data Science Club', location: 'New York'})
+CREATE (:Group {name: 'Hiking Club', location: 'Los Angeles'})
 ```
 
 ### Basic Queries
