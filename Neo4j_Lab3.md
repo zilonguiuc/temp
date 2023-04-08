@@ -37,7 +37,8 @@ CREATE (:Address {address_id: 123, street: "123 Main St", city: "San Francisco",
 
 ### 10. Create a relationship between "Customer" and "Address" nodes: Use the following command to create a "LIVES_AT" relationship between the "Customer" and "Address" nodes:
 ```
-MATCH (c:Customer), (a:Address) WHERE c.customer_id = 1234 AND a.address_id = 123 CREATE (c)-[:LIVES_AT]->(a)
+MATCH (c:Customer), (a:Address) WHERE c.customer_id = 1234 AND a.address_id = 123 
+CREATE (c)-[:LIVES_AT]->(a)
 ```
 
 View the graph: Refresh the Neo4j Browser and click on the "Graph" tab to see the nodes and their relationships.
