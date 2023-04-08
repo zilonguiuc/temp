@@ -76,6 +76,17 @@ DELETE friend_of
 ```
 Note that deleting nodes and relationships is a destructive operation and should be used with caution.
 
+To delete all data in a Neo4j database, you can use the `MATCH` and `DELETE` clauses in a query to match and delete all nodes and relationships in the database. Here is an example query:
+```sql
+MATCH (n)
+DETACH DELETE n
+
+```
+This query matches all nodes in the database using the `(n)` pattern, and then uses the `DETACH DELETE` clause to delete each node along with all of its relationships. The `DETACH` keyword is used to remove any relationships associated with the nodes being deleted.
+Note that this query will permanently delete all data in the database, so use it with caution. It is recommended to take a backup of the database before running this query.
+
+
+
 ## Querying Data
 Once you have data stored in Neo4j, you can query it using the Cypher query language. Cypher is a declarative query language that is specifically designed for querying graph data. Let us first create some more complicated data first
 
