@@ -119,7 +119,7 @@ RETURN person
 ```
 
 This returns all nodes labeled "Person" in the graph. 
-```
+ 
  
 ### Filtering Results
 You can also filter query results using the `WHERE` clause. The `WHERE` clause allows you to specify conditions that must be met for a node or relationship to be included in the results.
