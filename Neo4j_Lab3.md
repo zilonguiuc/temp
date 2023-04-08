@@ -25,7 +25,8 @@ CREATE (:CreditCard {card_number: "1234567890123456", card_type: "Visa", card_li
 ### 8. Create a relationship between "Customer" and "CreditCard" nodes: Use the following command to create a "OWNS" relationship between the "Customer" and "CreditCard" nodes:
 
 ```
-MATCH (c:Customer), (cc:CreditCard) WHERE c.customer_id = 1234 AND cc.card_number = "1234567890123456" CREATE (c)-[:OWNS]->(cc)
+MATCH (c:Customer), (cc:CreditCard) WHERE c.customer_id = 1234 AND cc.card_number = "1234567890123456" 
+CREATE (c)-[:OWNS]->(cc)
 ```
 
 ### 9. View the graph: Refresh the Neo4j Browser and click on the "Graph" tab to see the nodes and their relationship.
