@@ -30,73 +30,68 @@ CREATE (c)-[:OWNS]->(cc)
 ```
 
 ### 9. View the graph: Refresh the Neo4j Browser and click on the "Graph" tab to see the nodes and their relationship.
-Create an "Address" node: Use the following command to create an "Address" node:
+
+
+### 10. Create an "Address" node: Use the following command to create an "Address" node:
 ```
 CREATE (:Address {address_id: 123, street: "123 Main St", city: "San Francisco", state: "CA", zip_code: "94101"})
 ```
 
-### 10. Create a relationship between "Customer" and "Address" nodes: Use the following command to create a "LIVES_AT" relationship between the "Customer" and "Address" nodes:
+#### 11. Create a relationship between "Customer" and "Address" nodes: Use the following command to create a "LIVES_AT" relationship between the "Customer" and "Address" nodes:
 ```
 MATCH (c:Customer), (a:Address) WHERE c.customer_id = 1234 AND a.address_id = 123 
 CREATE (c)-[:LIVES_AT]->(a)
 ```
 
-View the graph: Refresh the Neo4j Browser and click on the "Graph" tab to see the nodes and their relationships.
+#### 12. View the graph: Refresh the Neo4j Browser and click on the "Graph" tab to see the nodes and their relationships.
 
-Retrieve all "Customer" nodes: Use the following command to retrieve all "Customer" nodes:
+#### 13. Retrieve all "Customer" nodes: Use the following command to retrieve all "Customer" nodes:
 
 MATCH (c:Customer) RETURN c
 
-Retrieve all "CreditCard" nodes: Use the following command to retrieve all "CreditCard" nodes:
+
+#### 14. Retrieve all "CreditCard" nodes: Use the following command to retrieve all "CreditCard" nodes:
 
 MATCH (cc:CreditCard) RETURN cc
 
-Retrieve all "Address" nodes: Use the following command to retrieve all "Address" nodes:
+#### 15. Retrieve all "Address" nodes: Use the following command to retrieve all "Address" nodes:
 
 MATCH (a:Address) RETURN a
 
-Retrieve a "Customer" node by its ID: Use the following command to retrieve a "Customer
 
-
-
-
-Hongyan Liang
-step 16 and after is not finished
-I apologize for the mistake. Here are the remaining steps:
-
-Retrieve a "Customer" node by its ID: Use the following command to retrieve a "Customer" node by its ID:
+#### 16. Retrieve a "Customer" node by its ID: Use the following command to retrieve a "Customer" node by its ID:
 
 MATCH (c:Customer {customer_id: 1234}) RETURN c
 
-Retrieve a "CreditCard" node by its card number: Use the following command to retrieve a "CreditCard" node by its card number:
+#### 17. Retrieve a "CreditCard" node by its card number: Use the following command to retrieve a "CreditCard" node by its card number:
 
 MATCH (cc:CreditCard {card_number: "1234567890123456"}) RETURN cc
 
-Create an index on the "name" property of the "Customer" nodes:
+#### 18. Create an index on the "name" property of the "Customer" nodes:
 
 CREATE INDEX ON :Customer(name)
 
-Retrieve all "Customer" nodes sorted by their names: Use the following command to retrieve all "Customer" nodes sorted by their names:
+#### 19. Retrieve all "Customer" nodes sorted by their names: Use the following command to retrieve all "Customer" nodes sorted by their names:
 
 MATCH (c:Customer) RETURN c ORDER BY c.name
 
-Update the "balance" property of a "CreditCard" node: Use the following command to update the "balance" property of a "CreditCard" node:
+#### 20. Update the "balance" property of a "CreditCard" node: Use the following command to update the "balance" property of a "CreditCard" node:
 
 MATCH (cc:CreditCard {card_number: "1234567890123456"}) SET cc.balance = 9000
 
-Retrieve all "CreditCard" nodes sorted by their balances in descending order: Use the following command to retrieve all "CreditCard" nodes sorted by their balances in descending order:
+#### 21. Retrieve all "CreditCard" nodes sorted by their balances in descending order: Use the following command to retrieve all "CreditCard" nodes sorted by their balances in descending order:
 
 MATCH (cc:CreditCard) RETURN cc ORDER BY cc.balance DESC
 
-Delete a "Customer" node and all of its relationships: Use the following command to delete a "Customer" node and all of its relationships:
+#### 22. Delete a "Customer" node and all of its relationships: Use the following command to delete a "Customer" node and all of its relationships:
 
 MATCH (c:Customer {customer_id: 1234}) DETACH DELETE c
 
-Delete a "CreditCard" node and all of its relationships: Use the following command to delete a "CreditCard" node and all of its relationships:
+#### 23. Delete a "CreditCard" node and all of its relationships: Use the following command to delete a "CreditCard" node and all of its relationships:
 
 MATCH (cc:CreditCard {card_number: "1234567890123456"}) DETACH DELETE cc
 
-Delete an "Address" node and all of its relationships: Use the following command to delete an "Address" node and all of its relationships:
+#### Delete an "Address" node and all of its relationships: Use the following command to delete an "Address" node and all of its relationships:
 
 MATCH (a:Address {address_id: 123}) DETACH DELETE a
 
