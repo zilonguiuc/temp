@@ -50,21 +50,40 @@ This creates a directed relationship labeled "WORKS_FOR" with a single property 
 ## Querying Data
 Once you have data stored in Neo4j, you can query it using the Cypher query language. Cypher is a declarative query language that is specifically designed for querying graph data.
 ### Basic Queries
-To retrieve data from a Neo4j graph, you use the `MATCH` clause followed by the `RETURN` clause to specify the data you want to retrieve. The `MATCH` clause specifies the pattern to match in the graph, and the `RETURN` clause specifies the data to return.
-For example, to retrieve all nodes labeled "Person", you would use the following query:
-```sql
+ Basic Queries
+To retrieve data from a Neo4j graph, you use the MATCH clause followed by the RETURN clause to specify the data you want to retrieve. The MATCH clause specifies the pattern to match in the graph, and the RETURN clause specifies the data to return.
+
+Example Data
+Let's say we have a simple graph representing a social network, with nodes labeled "Person" and "Group", and relationships labeled "FRIENDS_WITH" and "MEMBER_OF" respectively. Here's an example data:
+
+CREATE (:Person {name: 'Alice', age: 25, city: 'New York'})
+CREATE (:Person {name: 'Bob', age: 30, city: 'Los Angeles'})
+CREATE (:Group {name: 'Data Science Club', location: 'New York'})
+CREATE (alice)-[:MEMBER_OF]->(dataScience)
+CREATE (bob)-[:MEMBER_OF]->(dataScience)
+ 
+MATCH clause
+To retrieve all nodes labeled "Person", you would use the following query:
+
 MATCH (person:Person)
 RETURN person
+This returns all nodes labeled "Person" in the graph, which are Alice, Bob, and Charlie in our example.
 
-```
-This returns all nodes labeled "Person" in the graph.
-You can also specify multiple labels in the `MATCH` clause to retrieve nodes that have any of those labels:
-```sql
-MATCH (node:Label1 OR Label2)
+You can also use the WHERE clause to filter the nodes based on their properties. For example, to retrieve all nodes labeled "Person" who are over 30 years old, you would use:
+
+MATCH (person:Person)
+WHERE person.age > 30
+RETURN person
+This returns only the node labeled "Person" with the name "Charlie", who is over 30 years old.
+
+You can also specify multiple labels in the MATCH clause to retrieve nodes that have any of those labels. For example, to retrieve all nodes labeled "Person" or "Group", you would use:
+
+MATCH (node:Person OR Group)
 RETURN node
+This returns all nodes labeled "Person" or "Group" in the graph.
 
-```
-This returns all nodes that have either the "Label1" or "Label2" label.
+ 
+ 
 ### Filtering Results
 You can also filter query results using the `WHERE` clause. The `WHERE` clause allows you to specify conditions that must be met for a node or relationship to be included in the results.
 For example, to retrieve all nodes labeled "Person" with the name "Alice", you would use the following query:
