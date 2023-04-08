@@ -134,17 +134,17 @@ This returns all nodes labeled "Person" with the name "Alice".
 You can also use comparison operators and logical operators in the `WHERE` clause to specify more complex conditions:
 ```sql
 MATCH (person:Person)
-WHERE person.age > 30 AND person.city = 'New York'
+WHERE person.age > 20 AND person.city = 'New York'
 RETURN person
 
 ```
-This returns all nodes labeled "Person" with an age greater than 30 and a city of "New York".
+This returns all nodes labeled "Person" with an age greater than 20 and a city of "New York".
 ### Traversing Relationships
 One of the most powerful features of Neo4j is the ability to traverse relationships between nodes. To traverse a relationship, you use the `MATCH` clause followed by the `--` or `-->` syntax to specify the direction of the relationship, and the `RETURN` clause to specify the data you want to retrieve.
 For example, to retrieve all nodes labeled "Company" that are connected to Alice by a "WORKS_FOR" relationship, you would use the following query:
 ```css
-MATCH (alice:Person {name: 'Alice'})-[:WORKS_FOR]->(company:Company)
-RETURN company
+MATCH (alice:Person {name: 'Alice'})-[:MEMBER_OF]->(group:Group)
+RETURN group
 
 ```
 This returns all nodes labeled "Company" that are connected to Alice by a "WORKS_FOR" relationship.
