@@ -163,7 +163,7 @@ db.students.find().sort({ GPA: -1 }).pretty()
 
 ```
 ### Step 11: Update a Field and Remove Another Field
-Update the document in the "students" collection with the email "[jdoe@illinois.edu](mailto:jdoe@illinois.edu" target="_new)" to remove the "enrolled_courses" field.
+Update the document in the "students" collection with the email "jdoe@illinois.edu" to remove the "enrolled_courses" field.
 ```javascript
 db.students.updateOne({ name: "John Doe" }, { $unset: { enrolled_courses: 1 } })
 
@@ -204,21 +204,7 @@ Find all documents in the "students" collection where the GPA is between 3.5 and
 db.students.find({ GPA: { $gt: 3.5, $lt: 3.9 } }).pretty()
 
 ```
-### Step 18: Limit the Number of Documents Returned in a Query
-Retrieve the first two documents from the "students" collection.
-```javascript
-db.students.find().limit(2
 
-```
-
-
- --------
-**You:**
-show step 18 and after
-
- --------
-**ChatGPT:**
-Sure, here are the remaining steps:
 ### Step 18: Limit the Number of Documents Returned in a Query
 Retrieve the first two documents from the "students" collection.
 ```javascript
@@ -231,22 +217,7 @@ Remove the "students" collection from the "university" database.
 db.students.drop()
 
 ```
-### Step 20: Exit the MongoDB Shell
-Exit the MongoDB shell.
-```javascript
-exit
 
-```
-And that's it! This concludes the assignment.
-
-
- --------
-**You:**
-change step 2o into delete the database
-
- --------
-**ChatGPT:**
-Sure, here's the updated Step 20:
 ### Step 20: Delete the Database
 Delete the "university" database.
 ```javascript
@@ -254,3 +225,5 @@ use university
 db.dropDatabase()
 
 ```
+
+Good Job!
