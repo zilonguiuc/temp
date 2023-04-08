@@ -122,13 +122,6 @@ db.courses.updateOne(
 ```
 
 
- --------
-**You:**
-can you show me step 7 to 12
-
- --------
-**ChatGPT:**
-Sure, here are the steps 7 to 12 of the assignment:
 1. Use the `updateOne` method to add the student `ObjectId("6161b8bb835db764ab266e92")` to the `enrolled_students` array of the course `ObjectId("6161b8bb835db764ab266e8f")`.
 ```css
 db.courses.updateOne(
@@ -208,12 +201,9 @@ db.instructors.aggregate([
 1. Use an aggregation pipeline to find the most popular major among the enrolled students. Return a document with the fields `major_name` (the name of the major) and `enrollment_count` (the
 
 
- --------
-**You:**
-can you show me step 13 to 15
+ step 13 to 15
 
- --------
-**ChatGPT:**
+
 Sure, here are the steps 13 to 15 of the assignment:
 1. Use the `$set` operator to add a new field called `start_date` to each document in the `courses` collection. Set the value of `start_date` to ISODate("2023-08-21T00:00:00Z") for all courses.
 ```bash
