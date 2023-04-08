@@ -76,7 +76,7 @@ DELETE friend_of
 ```
 Note that deleting nodes and relationships is a destructive operation and should be used with caution.
 
-To delete all data in a Neo4j database, you can use the `MATCH` and `DELETE` clauses in a query to match and delete all nodes and relationships in the database. Here is an example query:
+You can also use the `MATCH` and `DELETE` clauses in a query to match and delete all nodes and relationships in the database. Here is an example query:
 ```sql
 MATCH (n)
 DETACH DELETE n
