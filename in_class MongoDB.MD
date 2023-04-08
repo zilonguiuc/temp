@@ -57,7 +57,7 @@ We will create a database called "illinois_university" that will store informati
 ```
 
 
-### 1. Insert a new document into the `students` collection with the following information: `first_name` = "Emily", `last_name` = "Jones", `email` ="ejones@illinois.edu", `major` = "Mathematics", `enrolled_courses` = [ObjectId("6161b8bb835db764ab266e8e")].
+#### 1. Insert a new document into the `students` collection with the following information: `first_name` = "Emily", `last_name` = "Jones", `email` ="ejones@illinois.edu", `major` = "Mathematics", `enrolled_courses` = [ObjectId("6161b8bb835db764ab266e8e")].
 
 ```css
 db.students.insertOne({
