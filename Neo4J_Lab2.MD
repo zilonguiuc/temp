@@ -3,7 +3,7 @@
 Neo4j is a graph database management system that is used to store, manage, and query large, complex graphs. It is designed to handle highly connected data and to enable efficient traversal of relationships between nodes. In this notebook, we will explore the basic concepts of Neo4j and learn how to use it to create, query, and manipulate graph data.
 ## Installing Neo4j
 Before we get started, you need to have Neo4j installed on your system. You can download the appropriate version of Neo4j for your operating system from the official website:  https://neo4j.com/download/
-## Basic Concepts
+## Basic Concepts (Creation and deletion)
 In Neo4j, data is stored as a set of nodes and relationships between them. Nodes represent entities in the graph, and relationships represent connections between those entities. Both nodes and relationships can have properties, which are key-value pairs that provide additional information about the entity.
 ### Nodes
 Nodes are the basic building blocks of a Neo4j graph. They represent entities in the graph and can be labeled to categorize them. Each node can have multiple properties associated with it.
@@ -47,6 +47,35 @@ CREATE (bob)-[:WORKS_FOR {since: 2015}]->(acme), (bob)-[:FRIEND_OF]->(alice)
 ```
  
 This creates a directed relationship labeled "WORKS_FOR" with a single property "since" set to 2015, connecting Bob to Acme, and an undirected relationship labeled "FRIEND_OF" connecting Bob to Alice.
+
+### Deleting Nodes and Relationships
+To delete the nodes and relationships created by the sample queries, you can use the MATCH clause followed by the DETACH DELETE clause. The DETACH keyword ensures that any relationships connected to the node are also deleted. Here's an example:
+To delete all nodes labeled "Person":
+```sql
+MATCH (person:Person)
+DETACH DELETE person
+
+```
+To delete all nodes labeled "Company":
+```sql
+MATCH (company:Company)
+DETACH DELETE company
+
+```
+To delete all relationships labeled "WORKS_FOR":
+```scss
+MATCH (:Person)-[works_for:WORKS_FOR]-(:Company)
+DELETE works_for
+
+```
+To delete all relationships labeled "FRIEND_OF":
+```scss
+MATCH (:Person)-[friend_of:FRIEND_OF]-(:Person)
+DELETE friend_of
+
+```
+Note that deleting nodes and relationships is a destructive operation and should be used with caution.
+
 ## Querying Data
 Once you have data stored in Neo4j, you can query it using the Cypher query language. Cypher is a declarative query language that is specifically designed for querying graph data.
 
