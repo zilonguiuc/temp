@@ -72,6 +72,10 @@ This returns all nodes labeled "Person" in the graph. You can also specify multi
 MATCH (node:Label1 OR Label2)
 RETURN node
 ```
+```
+MATCH (node:Person OR Group)
+RETURN node
+```
  
 ### Filtering Results
 You can also filter query results using the `WHERE` clause. The `WHERE` clause allows you to specify conditions that must be met for a node or relationship to be included in the results.
