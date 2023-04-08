@@ -1,4 +1,64 @@
-1. Insert a new document into the `students` collection with the following information: `first_name` = "Emily", `last_name` = "Jones", `email` = "[ejones@illinois.edu](mailto:ejones@illinois.edu" target="_new)", `major` = "Mathematics", `enrolled_courses` = [ObjectId("6161b8bb835db764ab266e8e")].
+# University of Illinois MongoDB Database Design
+
+We will create a database called "illinois_university" that will store information about the students, instructors, and courses at the University of Illinois. Here is an example schema for the database:
+
+**students:** 
+
+* Each document will represent a student and will have the following fields: `id` (unique identifier for the student), `first_name`, `last_name`, `email`, `major`, `enrolled_courses` (an array of course IDs that the student is currently enrolled in).
+
+```css
+{
+  "_id": ObjectId("6161b8bb835db764ab266e8d"),
+  "first_name": "John",
+  "last_name": "Smith",
+  "email": "jsmith@illinois.edu",
+  "major": "Computer Science",
+  "enrolled_courses": [
+    ObjectId("6161b8bb835db764ab266e8e"),
+    ObjectId("6161b8bb835db764ab266e8f")
+  ]
+}
+
+```
+**instructors:** 
+* Each document will represent an instructor and will have the following fields: `id` (unique identifier for the instructor), `first_name`, `last_name`, `email`, `department`, `teaching_courses` (an array of course IDs that the instructor is currently teaching).
+
+
+```css
+{
+  "_id": ObjectId("6161b8bb835db764ab266e93"),
+  "first_name": "Jane",
+  "last_name": "Doe",
+  "email": "jdoe@illinois.edu",
+  "department": "Computer Science",
+  "teaching_courses": [
+    ObjectId("6161b8bb835db764ab266e8e"),
+    ObjectId("6161b8bb835db764ab266e8f")
+  ]
+}
+
+```
+**courses:** 
+
+* Each document will represent a course and will have the following fields: `id` (unique identifier for the course), `name`, `description`, `instructor_id` (the ID of the instructor who is teaching the course), `enrolled_students` (an array of student IDs who are currently enrolled in the course).
+
+```css
+{
+  "_id": ObjectId("6161b8bb835db764ab266e8e"),
+  "name": "Data Structures and Algorithms",
+  "description": "Learn advanced data structures and algorithms with Java.",
+  "instructor_id": ObjectId("6161b8bb835db764ab266e93"),
+  "enrolled_students": [
+    ObjectId("6161b8bb835db764ab266e8d"),
+    ObjectId("6161b8bb835db764ab266e90"),
+    ObjectId("6161b8bb835db764ab266e91")
+  ]
+}
+```
+
+
+### 1. Insert a new document into the `students` collection with the following information: `first_name` = "Emily", `last_name` = "Jones", `email` ="ejones@illinois.edu", `major` = "Mathematics", `enrolled_courses` = [ObjectId("6161b8bb835db764ab266e8e")].
+
 ```css
 db.students.insertOne({
   "first_name": "Emily",
