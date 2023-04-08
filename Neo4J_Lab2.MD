@@ -118,15 +118,7 @@ MATCH (person:Person)
 RETURN person
 ```
 
-This returns all nodes labeled "Person" in the graph. You can also specify multiple labels in the MATCH clause to retrieve nodes that have any of those labels:
-```
-MATCH (node:Label1 OR Label2)
-RETURN node
-```
-Try below
-```
-MATCH (node:Person OR Group)
-RETURN node
+This returns all nodes labeled "Person" in the graph. 
 ```
  
 ### Filtering Results
