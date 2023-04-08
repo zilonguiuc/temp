@@ -155,6 +155,12 @@ MATCH (c:Customer)-[:OWNS]->(cc:CreditCard)-[:MADE]->(t:Transaction) WHERE t.amo
 
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard)-[:MADE]->(t:Transaction)-[:PURCHASED_FROM]->(m:Merchant {name: "Amazon"}) WHERE t.amount < 150 RETURN c, cc, t, m
 
+MATCH (c:Customer)-[:OWNS]->(cc:CreditCard)
+MATCH (cc)-[:PURCHASED_FROM]->(m:Merchant {name: "Amazon"})
+MATCH (cc)-[:MADE]->(t:Transaction)
+WHERE t.amount < 150
+RETURN c, cc, m, t
+
 #### .Create an index on the "card_number" property of the "CreditCard" nodes:
 
 CREATE INDEX ON :CreditCard(card_number)
