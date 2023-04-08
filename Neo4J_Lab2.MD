@@ -185,21 +185,6 @@ MERGE (person)-[:WORKS_FOR {since: 2020}]->(company)
 This creates a node labeled "Person" with the name "Alice", a node labeled "Company" with the name "Acme", and a "WORKS_FOR" relationship connecting them, but only if they do not already exist.
 
  
-### Indexing and Constraints
-In addition to the basic concepts of nodes and relationships, Neo4j also supports indexing and constraints to help optimize data access and enforce data integrity.
-Indexes can be used to improve the performance of queries that filter on specific properties. You can create indexes in Neo4j using the `CREATE INDEX` clause:
-```css
-CREATE INDEX ON :Person(name)
-
-```
-This creates an index on the "name" property of all nodes labeled "Person".
-Constraints can be used to enforce unique or required properties on nodes and relationships. You can create constraints in Neo4j using the `CREATE CONSTRAINT` clause:
-```sql
-CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE
-
-```
-This creates a unique constraint on the "name" property of all nodes labeled "Person", ensuring that no two nodes have the same name.
-
 
 ### Using Labels and Properties in Queries
 In addition to filtering and matching nodes by label and property values, you can also use these values in other parts of your query. For example, you can use the `SET` clause to update a property value based on another property value:
@@ -234,27 +219,7 @@ RETURN event.name
 
 ```
 This returns the name of all "Event" nodes with a "date" property between 6:00 PM and 6:00 AM on New Year's Eve.
-### Using Transactions
-Neo4j supports transactions, which allow you to group multiple database operations into a single unit of work. Transactions ensure that either all of the operations in the transaction are completed successfully, or none of them are.
-To use transactions in Neo4j, you can use the `BEGIN`, `COMMIT`, and `ROLLBACK` clauses:
-```css
-BEGIN
-CREATE (:Person {name: 'Bob', age: 40})
-CREATE (:Person {name: 'Alice', age: 35})
-COMMIT
 
-```
-This creates two "Person" nodes in a single transaction.
-If you encounter an error while executing a transaction, you can use the `ROLLBACK` clause to undo any changes made in the transaction:
-```php
-BEGIN
-CREATE (:Person {name: 'Bob', age: 40})
-CREATE (:Person {name: 'Alice', age: 35})
-CREATE (:Person {name: 'Bob', age: 50}) // This line will cause an error
-COMMIT
-
-```
-This transaction will fail due to the duplicate "name" property value in the third node, and all changes made in the transaction will be rolled back.
 
 ### Updating Nodes and Relationships
 You can use the `SET` clause to update the properties of a node or relationship:
