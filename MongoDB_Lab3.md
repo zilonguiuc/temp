@@ -1,4 +1,4 @@
-# step-by-step instructions for creating a Neo4j database for bank credit cards with CRUD operations, aggregation, joins, and indexing, as follows:
+# Step-by-step instructions for creating a Neo4j database for bank credit cards with CRUD operations, aggregation, joins, and indexing, as follows:
 
 ### 1. Install Neo4j: Download and install Neo4j Desktop from the Neo4j website (https://neo4j.com/download/).
 
