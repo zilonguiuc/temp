@@ -96,127 +96,128 @@ MATCH (cc:CreditCard) RETURN cc ORDER BY cc.balance DESC
 
 
 #### 22. Retrieve all "Customer" nodes and their associated "CreditCard" nodes: Use the following command to retrieve all "Customer" nodes and their associated "CreditCard" nodes:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard) RETURN c, cc
-
+```
 #### 23. Retrieve all "Customer" nodes and their associated "Address" nodes: Use the following command to retrieve all "Customer" nodes and their associated "Address" nodes:
-
+```
 MATCH (c:Customer)-[:LIVES_AT]->(a:Address) RETURN c, a
-
+```
 #### 24. Use the following command to retrieve all "Customer" nodes with "CreditCard" nodes that have a balance greater than 5000:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard) WHERE cc.balance > 5000 RETURN c, cc
-
+```
 #### 25. Use the following command to retrieve all "Customer" nodes with "CreditCard" nodes that have a balance between 5000 and 10000:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard) WHERE cc.balance > 5000 AND cc.balance < 10000 RETURN c, cc
-
+```
 #### 26. Use the following command to retrieve all "Customer" nodes with "CreditCard" nodes that have a balance less than 5000:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard) WHERE cc.balance < 5000 RETURN c, cc
-
+```
 
 
 #### 27 . Use the following command to retrieve all "Customer" nodes with "CreditCard" nodes that have a balance less than 5000 and are of "Visa" card type:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard) WHERE cc.balance < 5000 AND cc.card_type = "Visa" RETURN c, cc
-
+```
 #### 28. Create a "Merchant" node: Use the following command to create a "Merchant" node:
-
+```
 CREATE (:Merchant {merchant_id: 1, name: "Amazon", location: "Seattle"})
-
+```
 #### 29. Create a "Transaction" node: Use the following command to create a "Transaction" node:
-
+```
 CREATE (:Transaction {transaction_id: 1, amount: 100, transaction_date: "2022-04-08"})
-
+```
 #### 30. Create a relationship between "CreditCard" and "Merchant" nodes: Use the following command to create a "PURCHASED_FROM" relationship between the "CreditCard" and "Merchant" nodes:
-
+```
 MATCH (cc:CreditCard {card_number: "1234567890123456"}), (m:Merchant {merchant_id: 1}) CREATE (cc)-[:PURCHASED_FROM]->(m)
-
+```
 #### 31. Create a relationship between "Transaction" and "CreditCard" nodes: Use the following command to create a "MADE" relationship between the "Transaction" and "CreditCard" nodes:
-
+```
 MATCH (cc:CreditCard {card_number: "1234567890123456"}), (t:Transaction {transaction_id: 1}) CREATE (cc)-[:MADE]->(t)
-
+```
 #### 32. Retrieve all "Transaction" nodes and their associated "CreditCard" and "Merchant" nodes: Use the following command to retrieve all "Transaction" nodes and their associated "CreditCard" and "Merchant" nodes:
-
+```
 MATCH (t:Transaction)<-[:MADE]-(cc:CreditCard)-[:PURCHASED_FROM]->(m:Merchant) RETURN t, cc, m
-
+```
 #### 33. Retrieve all "Customer" nodes and their associated "Transaction" nodes: Use the following command to retrieve all "Customer" nodes and their associated "Transaction" nodes:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard)-[:MADE]->(t:Transaction) RETURN c, t
-
+```
 #### 34. Use the following command to retrieve all "Customer" nodes with "Transaction" nodes that have an amount greater than 50:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard)-[:MADE]->(t:Transaction) WHERE t.amount > 50 RETURN c, cc, t
-
+```
 #### 35. Use the following command to retrieve all "Customer" nodes with "Transaction" nodes that have an amount between 50 and 150:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard)-[:MADE]->(t:Transaction) WHERE t.amount > 50 AND t.amount < 150 RETURN c, cc, t
-
+```
 #### 36. Use the following command to retrieve all "Customer" nodes with "Transaction" nodes that have an amount less than 150:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard)-[:MADE]->(t:Transaction) WHERE t.amount < 150 RETURN c, cc, t
-
+```
 
 
 #### 37. Use the following command to retrieve all "Customer" nodes with "Transaction" nodes that have an amount less than 150 and were made to the "Amazon" merchant:
 
- 
+ ```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard)
 MATCH (cc)-[:PURCHASED_FROM]->(m:Merchant {name: "Amazon"})
 MATCH (cc)-[:MADE]->(t:Transaction)
 WHERE t.amount < 150
 RETURN c, cc, m, t
-
+```
 #### 38. Create an index on the "card_number" property of the "CreditCard" nodes:
-
+```
 CREATE INDEX ON :CreditCard(card_number)
-
+```
 #### 39. Use the following command to retrieve all "CreditCard" nodes with a balance greater than 5000 using the index:
-
+```
 MATCH (cc:CreditCard) WHERE cc.balance > 5000 RETURN cc
-
+```
 #### 40. Use the following command to retrieve all "CreditCard" nodes with a balance less than 5000 using the index:
-
+```
 MATCH (cc:CreditCard) WHERE cc.balance < 5000 RETURN cc
-
+```
 #### 41. Use the following command to retrieve all "Customer" nodes with "CreditCard" nodes that have a balance greater than 5000 using the index:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard) WHERE cc.balance > 5000 RETURN c, cc
-
+```
 #### 42. Use the following command to retrieve all "Customer" nodes with "CreditCard" nodes that have a balance less than 5000 using the index:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard) WHERE cc.balance < 5000 RETURN c, cc
-
+```
 #### 43. Use the following command to retrieve the total number of "Customer" nodes:
-
+```
 MATCH (c:Customer) RETURN count(c)
-
+```
 #### 44. Use the following command to retrieve the average age of all "Customer" nodes:
-
+```
 MATCH (c:Customer) RETURN avg(c.age)
-
+```
 #### 45. Use the following command to retrieve the total balance of all "CreditCard" nodes:
-
+```
 MATCH (cc:CreditCard) RETURN sum(cc.balance)
-
+```
 #### 46. Use the following command to retrieve the number of "CreditCard" nodes grouped by their card type:
-
+```
 MATCH (cc:CreditCard) RETURN cc.card_type, count(cc)
-
+```
 #### 47. Use the following command to retrieve all "Customer" nodes and their associated "CreditCard" nodes, sorted by the customer's age:
-
+```
 MATCH (c:Customer)-[:OWNS]->(cc:CreditCard) RETURN c, cc ORDER BY c.age
-
+```
 
 #### 48. Delete a "Customer" node and all of its relationships: Use the following command to delete a "Customer" node and all of its relationships:
-
+```
 MATCH (c:Customer {customer_id: 1234}) DETACH DELETE c
-
+```
 #### 49. Delete a "CreditCard" node and all of its relationships: Use the following command to delete a "CreditCard" node and all of its relationships:
-
+```
 MATCH (cc:CreditCard {card_number: "1234567890123456"}) DETACH DELETE cc
-
+```
 #### 50. Delete an "Address" node and all of its relationships: Use the following command to delete an "Address" node and all of its relationships:
-
+```
 MATCH (a:Address {address_id: 123}) DETACH DELETE a
+```
