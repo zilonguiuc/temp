@@ -1,24 +1,28 @@
 # step-by-step instructions for creating a Neo4j database for bank credit cards with CRUD operations, aggregation, joins, and indexing, as follows:
 
-Install Neo4j: Download and install Neo4j Desktop from the Neo4j website (https://neo4j.com/download/).
+### 1. Install Neo4j: Download and install Neo4j Desktop from the Neo4j website (https://neo4j.com/download/).
 
-Create a new project: Open Neo4j Desktop, click on "Create a New Project," and give it a name (e.g., "BankCreditCards").
+### 2. Create a new project: Open Neo4j Desktop, click on "Create a New Project," and give it a name (e.g., "BankCreditCards").
 
-Create a new database: Within the newly created project, click on "Add Database" and choose "Create a Local Database." Give it a name (e.g., "BankCreditCardsDB").
+### 3. Create a new database: Within the newly created project, click on "Add Database" and choose "Create a Local Database." Give it a name (e.g., "BankCreditCardsDB").
 
-Start the database: Select the newly created database and click on "Start."
+### 4. Start the database: Select the newly created database and click on "Start."
 
-Open the Neo4j Browser: In the Neo4j Desktop, click on the "Open Neo4j Browser" button next to the database.
+### 5. Open the Neo4j Browser: In the Neo4j Desktop, click on the "Open Neo4j Browser" button next to the database.
 
-Create the "Customer" node: Use the following command to create a "Customer" node:
+### 6. Create the "Customer" node: Use the following command to create a "Customer" node:
 
+```
 CREATE (:Customer {customer_id: 1234, name: "John Smith", age: 35, location: "San Francisco", income: 75000, occupation: "Engineer", credit_score: 800})
+```
 
-Create the "CreditCard" node: Use the following command to create a "CreditCard" node:
+### 7. Create the "CreditCard" node: Use the following command to create a "CreditCard" node:
 
+```
 CREATE (:CreditCard {card_number: "1234567890123456", card_type: "Visa", card_limit: 10000, balance: 8000, credit_age: 2, reward_program_status: "Silver", payment_history: ["on-time payment", "late payment"]})
+```
 
-Create a relationship between "Customer" and "CreditCard" nodes: Use the following command to create a "OWNS" relationship between the "Customer" and "CreditCard" nodes:
+### 8. Create a relationship between "Customer" and "CreditCard" nodes: Use the following command to create a "OWNS" relationship between the "Customer" and "CreditCard" nodes:
 
 MATCH (c:Customer), (cc:CreditCard) WHERE c.customer_id = 1234 AND cc.card_number = "1234567890123456" CREATE (c)-[:OWNS]->(cc)
 
