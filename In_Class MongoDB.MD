@@ -1,4 +1,4 @@
-# University of Illinois MongoDB Database Design (Student Collections)
+# MongoDB In-Class Excise Solution - University of Illinois MongoDB Database Design (Student Collections) 
 
 We will create a database called "university" that will store information about the students
 
