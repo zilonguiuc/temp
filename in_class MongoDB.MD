@@ -16,9 +16,19 @@ db.createCollection("students")
 ```
 ### Step 3: Insert a Document
 Insert a new document into the "students" collection with the following properties:
-* "name": "John Doe"* "major": "Computer Science"* "GPA": 3.5* "enrolled_courses": [
-{ "course_name": "Database Systems", "course_grade": "A" },
-{ "course_name": "Web Development", "course_grade": "B" }
+ ```
+ {
+  name: "John Doe",
+  major: "Computer Science",
+  GPA: 3.5,
+  enrolled_courses: [
+    { course_name: "Database Systems", course_grade: "A" },
+    { course_name: "Web Development", course_grade: "B" }
+  ]
+}
+```
+ 
+ 
 ]```javascript
 db.students.insert({
   name: "John Doe",
@@ -34,6 +44,7 @@ db.students.insert({
 ### Step 4: Insert Multiple Documents
 Insert the following documents into the "students" collection:
  
+ ```
   {
     name: "Jane Smith",
     major: "Mathematics",
@@ -71,7 +82,8 @@ Insert the following documents into the "students" collection:
     ]
   }
 ]) 
- 
+```
+
  ```javascript
 db.students.insertMany([
   {
