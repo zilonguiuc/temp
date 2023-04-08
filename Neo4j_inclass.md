@@ -71,18 +71,42 @@ RETURN person.city, COUNT(person)
 GROUP BY person.city
 ```
 
-#### 13.  Delete all nodes labeled "Organization" using the following command:
+#### 13. Find which people work at Acme Inc.:
+```css
+MATCH (person:Person)-[:WORKS_AT]->(company:Organization {name: 'Acme Inc.'})
+RETURN person.name, company.name
+```
+This query matches all nodes labeled "Person" that have a "WORKS_AT" relationship to the node labeled "Acme Inc." with the name property "Acme Inc." It then returns the name of the person and the name of the company they work at.
+
+#### 14. Find which organizations partner with each other:
+```less
+MATCH (company1:Organization)-[:PARTNERS_WITH]->(company2:Organization)
+RETURN company1.name, company2.name
+
+```
+This query matches all nodes labeled "Organization" that have a "PARTNERS_WITH" relationship to another node labeled "Organization." It then returns the names of both organizations.
+
+
+#### 15.  Find which organizations partner with "ABC LLC":
+```css
+MATCH (abc:Organization {name: 'ABC LLC'})-[:PARTNERS_WITH]->(partner:Organization)
+RETURN partner.name
+
+```
+This query finds all organizations that have a "PARTNERS_WITH" relationship with "ABC LLC" and returns their names.
+
+#### 16.  Delete all nodes labeled "Organization" using the following command:
 ```
 MATCH (org:Organization)
 DETACH DELETE org
 ```
 
-#### 14. Delete all "PARTNERS_WITH" relationships using the following command:
+#### 17. Delete all "PARTNERS_WITH" relationships using the following command:
 ```
 MATCH ()-[r:PARTNERS_WITH]->()
 DELETE r
 ```
-#### 15. Delete all nodes labeled "Person" using the following command:
+#### 18. Delete all nodes labeled "Person" using the following command:
 ```
 MATCH (person:Person)
 DETACH DELETE person
