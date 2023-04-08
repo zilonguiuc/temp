@@ -164,12 +164,11 @@ RETURN COUNT(person)
 
 ```
 This returns the number of nodes labeled "Person" in the graph.
-You can also use the `GROUP BY` clause to group results by a particular property:
+In Cypher, GROUP BY is done implicitly by all of the aggregate functions. In a WITH/RETURN statement, any columns not part of an aggregate will be the GROUP BY key. You can also use the aggregate clause to group results by a particular property:
  
 ```sql
 MATCH (person:Person)
-RETURN person.city, COUNT(person)
-GROUP BY person.city
+RETURN COUNT(person), person.city 
 
 ```
 This returns the number of nodes labeled "Person" for each unique value of the "city" property.
