@@ -1,244 +1,244 @@
-# University of Illinois MongoDB Database Design
+# University of Illinois MongoDB Database Design (Student Collections)
 
-We will create a database called "illinois_university" that will store information about the students, instructors, and courses at the University of Illinois. Here is an example schema for the database:
+We will create a database called "university" that will store information about the students
 
-**students:** 
-
-* Each document will represent a student and will have the following fields: `id` (unique identifier for the student), `first_name`, `last_name`, `email`, `major`, `enrolled_courses` (an array of course IDs that the student is currently enrolled in).
-
-```css
-{
-  "_id": ObjectId("6161b8bb835db764ab266e8d"),
-  "first_name": "John",
-  "last_name": "Smith",
-  "email": "jsmith@illinois.edu",
-  "major": "Computer Science",
-  "enrolled_courses": [
-    ObjectId("6161b8bb835db764ab266e8e"),
-    ObjectId("6161b8bb835db764ab266e8f")
-  ]
-}
+### Step 1: Create a University Database
+Create a new database called "university" using the MongoDB shell.
+```javascript
+use university
 
 ```
-**instructors:** 
-* Each document will represent an instructor and will have the following fields: `id` (unique identifier for the instructor), `first_name`, `last_name`, `email`, `department`, `teaching_courses` (an array of course IDs that the instructor is currently teaching).
-
-
-```css
-{
-  "_id": ObjectId("6161b8bb835db764ab266e93"),
-  "first_name": "Jane",
-  "last_name": "Doe",
-  "email": "jdoe@illinois.edu",
-  "department": "Computer Science",
-  "teaching_courses": [
-    ObjectId("6161b8bb835db764ab266e8e"),
-    ObjectId("6161b8bb835db764ab266e8f")
-  ]
-}
+### Step 2: Create a "students" Collection
+Create a new collection called "students" in the "university" database.
+```javascript
+db.createCollection("students")
 
 ```
-**courses:** 
-
-* Each document will represent a course and will have the following fields: `id` (unique identifier for the course), `name`, `description`, `instructor_id` (the ID of the instructor who is teaching the course), `enrolled_students` (an array of student IDs who are currently enrolled in the course).
-
-```css
-{
-  "_id": ObjectId("6161b8bb835db764ab266e8e"),
-  "name": "Data Structures and Algorithms",
-  "description": "Learn advanced data structures and algorithms with Java.",
-  "instructor_id": ObjectId("6161b8bb835db764ab266e93"),
-  "enrolled_students": [
-    ObjectId("6161b8bb835db764ab266e8d"),
-    ObjectId("6161b8bb835db764ab266e90"),
-    ObjectId("6161b8bb835db764ab266e91")
-  ]
-}
-```
-
-
-#### 1. Insert a new document into the `students` collection with the following information: `first_name` = "Emily", `last_name` = "Jones", `email` ="ejones@illinois.edu", `major` = "Mathematics", `enrolled_courses` = [ObjectId("6161b8bb835db764ab266e8e")].
-
-```css
-db.students.insertOne({
-  "first_name": "Emily",
-  "last_name": "Jones",
-  "email": "ejones@illinois.edu",
-  "major": "Mathematics",
-  "enrolled_courses": [
-    ObjectId("6161b8bb835db764ab266e8e")
+### Step 3: Insert a Document
+Insert a new document into the "students" collection with the following properties:
+* "name": "John Doe"* "major": "Computer Science"* "GPA": 3.5* "enrolled_courses": [
+{ "course_name": "Database Systems", "course_grade": "A" },
+{ "course_name": "Web Development", "course_grade": "B" }
+]```javascript
+db.students.insert({
+  name: "John Doe",
+  major: "Computer Science",
+  GPA: 3.5,
+  enrolled_courses: [
+    { course_name: "Database Systems", course_grade: "A" },
+    { course_name: "Web Development", course_grade: "B" }
   ]
 })
 
-```
-1. Insert a new document into the `instructors` collection with the following information: `first_name` = "John", `last_name` = "Doe", `email` = "[jdoe@illinois.edu](mailto:jdoe@illinois.edu" target="_new)", `department` = "Computer Science", `teaching_courses` = [ObjectId("6161b8bb835db764ab266e8e"), ObjectId("6161b8bb835db764ab266e8f")].
-```css
-db.instructors.insertOne({
-  "first_name": "John",
-  "last_name": "Doe",
-  "email": "jdoe@illinois.edu",
-  "department": "Computer Science",
-  "teaching_courses": [
-    ObjectId("6161b8bb835db764ab266e8e"),
-    ObjectId("6161b8bb835db764ab266e8f")
-  ]
-})
 
-```
-1. Insert a new document into the `courses` collection with the following information: `name` = "Database Systems", `description` = "Learn about relational database design and SQL.", `instructor_id` = ObjectId("6161b8bb835db764ab266e94"), `enrolled_students` = [ObjectId("6161b8bb835db764ab266e8d"), ObjectId("6161b8bb835db764ab266e90"), ObjectId("6161b8bb835db764ab266e91")].
-```css
-db.courses.insertOne({
-  "name": "Database Systems",
-  "description": "Learn about relational database design and SQL.",
-  "instructor_id": ObjectId("6161b8bb835db764ab266e94"),
-  "enrolled_students": [
-    ObjectId("6161b8bb835db764ab266e8d"),
-    ObjectId("6161b8bb835db764ab266e90"),
-    ObjectId("6161b8bb835db764ab266e91")
-  ]
-})
-
-```
-1. Use the `find` method to retrieve all documents from the `students` collection.
-```lua
-db.students.find()
-
-```
-1. Use the `find` method to retrieve the document from the `instructors` collection with the email address "[jdoe@illinois.edu](mailto:jdoe@illinois.edu" target="_new)".
-```lua
-db.instructors.find({"email": "jdoe@illinois.edu"})
-
-```
-1. Use the `findOne` method to retrieve the first document from the `courses` collection.
-```scss
-db.courses.findOne()
-
-```
-1. Use the `updateOne` method to add the student `ObjectId("6161b8bb835db764ab266e92")` to the `enrolled_students` array of the course `ObjectId("6161b8bb835db764ab266e8f")`.
-```json
-db.courses.updateOne(
-  {"_id": ObjectId("6161b8bb835db764ab
-
-```
-
-
-1. Use the `updateOne` method to add the student `ObjectId("6161b8bb835db764ab266e92")` to the `enrolled_students` array of the course `ObjectId("6161b8bb835db764ab266e8f")`.
-```css
-db.courses.updateOne(
-  {"_id": ObjectId("6161b8bb835db764ab266e8f")},
-  {"$addToSet": {"enrolled_students": ObjectId("6161b8bb835db764ab266e92")}}
-)
-
-```
-1. Update the `instructors` collection to add the course `ObjectId("6161b8bb835db764ab266e90")` to the `teaching_courses` array of the instructor with the ID `ObjectId("6161b8bb835db764ab266e94")`.
-```css
-db.instructors.updateOne(
-  {"_id": ObjectId("6161b8bb835db764ab266e94")},
-  {"$addToSet": {"teaching_courses": ObjectId("6161b8bb835db764ab266e90")}}
-)
-
-```
-1. Use an aggregation pipeline to find the number of students enrolled in each course. Return a list of documents with the fields `course_name` (the name of the course) and `enrollment_count` (the number of students enrolled in the course).
-```bash
-db.courses.aggregate([
-  {"$lookup": {
-    "from": "students",
-    "localField": "enrolled_students",
-    "foreignField": "_id",
-    "as": "students"
-  }},
-  {"$project": {
-    "_id": 0,
-    "course_name": "$name",
-    "enrollment_count": {"$size": "$students"}
-  }}
+### Step 4: Insert Multiple Documents
+Insert the following documents into the "students" collection:
+ 
+  {
+    name: "Jane Smith",
+    major: "Mathematics",
+    GPA: 3.9,
+    enrolled_courses: [
+      { course_name: "Calculus", course_grade: "A+" },
+      { course_name: "Statistics", course_grade: "A" }
+    ]
+  },
+  {
+    name: "Bob Johnson",
+    major: "English",
+    GPA: 3.2,
+    enrolled_courses: [
+      { course_name: "American Literature", course_grade: "B+" },
+      { course_name: "Creative Writing", course_grade: "A-" }
+    ]
+  },
+  {
+    name: "Samantha Lee",
+    major: "Biology",
+    GPA: 3.8,
+    enrolled_courses: [
+      { course_name: "Genetics", course_grade: "A" },
+      { course_name: "Anatomy", course_grade: "A+" }
+    ]
+  },
+  {
+    name: "David Kim",
+    major: "Economics",
+    GPA: 3.4,
+    enrolled_courses: [
+      { course_name: "Macroeconomics", course_grade: "B+" },
+      { course_name: "Microeconomics", course_grade: "B" }
+    ]
+  }
+]) 
+ 
+ ```javascript
+db.students.insertMany([
+  {
+    name: "Jane Smith",
+    major: "Mathematics",
+    GPA: 3.9,
+    enrolled_courses: [
+      { course_name: "Calculus", course_grade: "A+" },
+      { course_name: "Statistics", course_grade: "A" }
+    ]
+  },
+  {
+    name: "Bob Johnson",
+    major: "English",
+    GPA: 3.2,
+    enrolled_courses: [
+      { course_name: "American Literature", course_grade: "B+" },
+      { course_name: "Creative Writing", course_grade: "A-" }
+    ]
+  },
+  {
+    name: "Samantha Lee",
+    major: "Biology",
+    GPA: 3.8,
+    enrolled_courses: [
+      { course_name: "Genetics", course_grade: "A" },
+      { course_name: "Anatomy", course_grade: "A+" }
+    ]
+  },
+  {
+    name: "David Kim",
+    major: "Economics",
+    GPA: 3.4,
+    enrolled_courses: [
+      { course_name: "Macroeconomics", course_grade: "B+" },
+      { course_name: "Microeconomics", course_grade: "B" }
+    ]
+  }
 ])
 
 ```
-1. Use an aggregation pipeline to find the average number of enrolled students per course. Round the result to two decimal places.
-```kotlin
-db.courses.aggregate([
-  {"$lookup": {
-    "from": "students",
-    "localField": "enrolled_students",
-    "foreignField": "_id",
-    "as": "students"
-  }},
-  {"$project": {
-    "_id": 0,
-    "enrollment_count": {"$size": "$students"}
-  }},
-  {"$group": {
-    "_id": null,
-    "avg_enrollment": {"$avg": "$enrollment_count"}
-  }},
-  {"$project": {
-    "_id": 0,
-    "avg_enrollment": {"$round": ["$avg_enrollment", 2]}
-  }}
-])
+
+### Step 5: Show All Documents
+Retrieve all documents from the "students" collection and display them in the MongoDB shell.
+```javascript
+db.students.find().pretty()
 
 ```
-1. Use an aggregation pipeline to find the instructor who is teaching the most courses. Return a document with the fields `instructor_name` (the name of the instructor) and `course_count` (the number of courses the instructor is teaching).
-```bash
-db.instructors.aggregate([
-  {"$lookup": {
-    "from": "courses",
-    "localField": "teaching_courses",
-    "foreignField": "_id",
-    "as": "courses"
-  }},
-  {"$project": {
-    "_id": 0,
-    "instructor_name": {"$concat": ["$first_name", " ", "$last_name"]},
-    "course_count": {"$size": "$courses"}
-  }},
-  {"$sort": {"course_count": -1}},
-  {"$limit": 1}
-])
+### Step 6: Delete a Document
+Delete the document with the name "Bob Johnson" from the "students" collection.
+```javascript
+db.students.deleteOne({ name: "Bob Johnson" })
 
 ```
-1. Use an aggregation pipeline to find the most popular major among the enrolled students. Return a document with the fields `major_name` (the name of the major) and `enrollment_count` (the
-
-
- step 13 to 15
-
-
-Sure, here are the steps 13 to 15 of the assignment:
-1. Use the `$set` operator to add a new field called `start_date` to each document in the `courses` collection. Set the value of `start_date` to ISODate("2023-08-21T00:00:00Z") for all courses.
-```bash
-db.courses.updateMany(
-  {},
-  {"$set": {"start_date": ISODate("2023-08-21T00:00:00Z")}}
-)
+### Step 7: Update a Field
+Update the "GPA" field of the document with the name "John Doe" to 3.7.
+```javascript
+db.students.updateOne({ name: "John Doe" }, { $set: { GPA: 3.7 } })
 
 ```
-1. Use the `$unset` operator to remove the `enrolled_courses` field from the document in the `students` collection with the email address "[ejones@illinois.edu](mailto:ejones@illinois.edu" target="_new)".
-```perl
-db.students.updateOne(
-  {"email": "ejones@illinois.edu"},
-  {"$unset": {"enrolled_courses": ""}}
-)
+### Step 8: Find Documents with a Single Condition
+Retrieve the document from the "students" collection with the major "Mathematics".
+```javascript
+db.students.findOne({ major: "Mathematics" })
 
 ```
-1. Use the `$lookup` operator to join the `courses` and `instructors` collections on the `instructor_id` field. Return a list of documents with the fields `course_name` (the name of the course) and `instructor_name` (the name of the instructor who is teaching the course).
-```bash
-db.courses.aggregate([
-  {"$lookup": {
-    "from": "instructors",
-    "localField": "instructor_id",
-    "foreignField": "_id",
-    "as": "instructor"
-  }},
-  {"$project": {
-    "_id": 0,
-    "course_name": "$name",
-    "instructor_name": {"$concat": ["$instructor.first_name", " ", "$instructor.last_name"]}
-  }}
-])
+### Step 9: Find Documents with Multiple Conditions
+Retrieve all documents from the "students" collection with the major "Computer Science" and a course named "Web Development".
+```javascript
+db.students.find({ major: "Computer Science", "enrolled_courses.course_name": "Web Development" }).pretty()
 
 ```
-I hope this helps! Let me know if you have any questions or need further assistance.
+### Step 10: Sort Documents
+Retrieve all documents from the "students" collection and sort them by "GPA" in descending order.
+```javascript
+db.students.find().sort({ GPA: -1 }).pretty()
+
+```
+### Step 11: Update a Field and Remove Another Field
+Update the document in the "students" collection with the email "[jdoe@illinois.edu](mailto:jdoe@illinois.edu" target="_new)" to remove the "enrolled_courses" field.
+```javascript
+db.students.updateOne({ name: "John Doe" }, { $unset: { enrolled_courses: 1 } })
+
+```
+### Step 12: Remove a Field for a Certain Document
+Remove the "major" field from the document with the name "Samantha Lee" in the "students" collection.
+```javascript
+db.students.updateOne({ name: "Samantha Lee" }, { $unset: { major: 1 } })
+
+```
+### Step 13: Add a Field for a Student
+Add a new field called "graduation_year" with a value of 2022 to the document with the name "David Kim".
+```javascript
+db.students.updateOne({ name: "David Kim" }, { $set: { graduation_year: 2022 } })
+
+```
+### Step 14: Add a Field to All Documents
+Add a new field called "status" with a value of "enrolled" to all documents in the "students" collection.
+```javascript
+db.students.updateMany({}, { $set: { status: "enrolled" } })
+
+```
+### Step 15: Count Documents
+Count the number of documents in the "students" collection.
+```javascript
+db.students.count()
+
+```
+### Step 16: Find Documents that Match a Regular Expression
+Find all documents in the "students" collection where the name contains the string "doe".
+```javascript
+db.students.find({ name: { $regex: /doe/i } }).pretty()
+
+```
+### Step 17: Find Documents that Match a Range of Values
+Find all documents in the "students" collection where the GPA is between 3.5 and 3.9.
+```javascript
+db.students.find({ GPA: { $gt: 3.5, $lt: 3.9 } }).pretty()
+
+```
+### Step 18: Limit the Number of Documents Returned in a Query
+Retrieve the first two documents from the "students" collection.
+```javascript
+db.students.find().limit(2
+
+```
 
 
  --------
+**You:**
+show step 18 and after
+
+ --------
+**ChatGPT:**
+Sure, here are the remaining steps:
+### Step 18: Limit the Number of Documents Returned in a Query
+Retrieve the first two documents from the "students" collection.
+```javascript
+db.students.find().limit(2)
+
+```
+### Step 19: Remove a Collection
+Remove the "students" collection from the "university" database.
+```javascript
+db.students.drop()
+
+```
+### Step 20: Exit the MongoDB Shell
+Exit the MongoDB shell.
+```javascript
+exit
+
+```
+And that's it! This concludes the assignment.
+
+
+ --------
+**You:**
+change step 2o into delete the database
+
+ --------
+**ChatGPT:**
+Sure, here's the updated Step 20:
+### Step 20: Delete the Database
+Delete the "university" database.
+```javascript
+use university
+db.dropDatabase()
+
+```
