@@ -77,7 +77,7 @@ DELETE friend_of
 Note that deleting nodes and relationships is a destructive operation and should be used with caution.
 
 ## Querying Data
-Once you have data stored in Neo4j, you can query it using the Cypher query language. Cypher is a declarative query language that is specifically designed for querying graph data.
+Once you have data stored in Neo4j, you can query it using the Cypher query language. Cypher is a declarative query language that is specifically designed for querying graph data. Let us first create some more complicated data first
 
 ```
 CREATE (:Person {name: 'Alice', age: 25, city: 'New York'})
