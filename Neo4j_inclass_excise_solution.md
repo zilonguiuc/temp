@@ -1,3 +1,5 @@
+# Neo4j In Class Excise
+please fill out all the code below in a txt file or word file, and then submit it
 
 #### 1. Install Neo4j on your machine and start the Neo4j server.
 
