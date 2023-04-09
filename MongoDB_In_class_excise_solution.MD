@@ -29,7 +29,7 @@ Insert a new document into the "students" collection with the following properti
 ```
  
  
-]```javascript
+```javascript
 db.students.insert({
   name: "John Doe",
   major: "Computer Science",
@@ -39,7 +39,7 @@ db.students.insert({
     { course_name: "Web Development", course_grade: "B" }
   ]
 })
-
+```
 
 ### Step 4: Insert Multiple Documents
 Insert the following documents into the "students" collection:
@@ -81,7 +81,6 @@ Insert the following documents into the "students" collection:
       { course_name: "Microeconomics", course_grade: "B" }
     ]
   }
-]) 
 ```
 
  ```javascript
