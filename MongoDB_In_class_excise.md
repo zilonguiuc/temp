@@ -11,7 +11,7 @@ Create a new database called "university" using the MongoDB shell.
 ### Step 2: Create a "students" Collection
 Create a new collection called "students" in the "university" database.
 ```javascript
-db.createCollection("students")
+ 
 
 ```
 ### Step 3: Insert a Document
