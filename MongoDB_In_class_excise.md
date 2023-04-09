@@ -74,7 +74,7 @@ Insert the following documents into the "students" collection:
       { course_name: "Microeconomics", course_grade: "B" }
     ]
   }
-]) 
+
 ```
 
  ```javascript
