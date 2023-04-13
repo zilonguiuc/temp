@@ -173,6 +173,15 @@ Output
 ```
 This will create an ascending index on the "name" field in the "products" collection.
 
+--------
+Note: Indexes in MongoDB are similar to indexes in other databases, in that they help to improve the performance of queries by allowing the database to quickly locate the relevant data. An index is essentially a data structure that is created on one or more fields in a collection, which can be used to optimize queries on those fields.
+
+When you create an index on a field in MongoDB, the database creates a separate data structure that contains the indexed field's values, along with a reference to the document that contains each value. This index data structure is stored separately from the actual data in the collection, and is optimized for efficient lookups and sorting.
+
+When you query a collection, MongoDB will first check to see if there is an appropriate index available for the query. If there is, it will use the index to quickly locate the relevant documents and return the results. This can be much faster than scanning the entire collection for the relevant data, especially for large collections.
+
+--------
+
 ## Step 12: Query with a filter and projection
 To query the "products" collection with a filter and projection, use the `db.products.find()` method followed by a filter query and a projection. For example, to retrieve the name and price of all products in the "Category 1" category, run the following command:
 ```lua
