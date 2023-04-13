@@ -195,6 +195,21 @@ Output
 ```
 
 This will return a cursor to all documents in the "products" collection with the "category" field set to "Category 1", with only the "name" and "price" fields included in the results.
+
+--------
+Note: In MongoDB, a projection is a query operation that selects a subset of fields from the documents in a collection. When you run a projection query, MongoDB returns only the selected fields for each matching document, instead of returning the entire document.
+ 
+In MongoDB, you can specify a projection using the `find()` method and passing a document as the second argument that specifies which fields to include or exclude from the results. For example, the following code selects only the `name` and `age` fields from the `users` collection:
+```javascript
+db.products.find({}, { name: 1, price: 1, _id: 0 })
+
+```
+In this example, the first argument `{}` selects all documents in the `users` collection. The second argument `{ name: 1, price: 1, _id: 0 }` specifies that only the `name` and `price` fields should be returned, and that the `_id` field should be excluded. The `1` value indicates that the field should be included in the results, while the `0` value indicates that the field should be excluded.  (or you can simply omit "_id" in the projection and still get the same results.)
+
+
+ --------
+
+
 ## Step 13: Limit the number of results
 To limit the number of results returned by a query, use the `limit()` method on the cursor returned by the `find()` method. For example, to retrieve only the first two products in the "products" collection, run the following command:
 ```scss
