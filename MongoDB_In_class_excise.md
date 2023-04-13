@@ -119,7 +119,7 @@ Retrieve all documents from the "students" collection and sort them by "GPA" in 
 
 ```
 ### Step 11: Update a Field and Remove Another Field
-Update the document in the "students" collection with the email "jdoe@illinois.edu" to remove the "enrolled_courses" field.
+Update the document in the "students" collection with the name "John Doe" to remove the "enrolled_courses" field.
 ```javascript
  
 
@@ -149,7 +149,7 @@ Count the number of documents in the "students" collection.
 
 ```
 ### Step 16: Find Documents that Match a Regular Expression
-Find all documents in the "students" collection where the name contains the string "doe".
+Find all documents in the "students" collection where the name start the string "John".
 ```javascript
  
 
