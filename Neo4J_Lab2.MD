@@ -257,6 +257,11 @@ To import data into Neo4j, you can use the `LOAD CSV` clause to load data from a
 LOAD CSV WITH HEADERS FROM 'file:///data.csv' AS row
 CREATE (:Person {name: row.name, age: toInteger(row.age), city: row.city})
 
+OR From a external URL
+
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/zilonguiuc/badm558/main/data_neo4j.csv' AS row
+CREATE (:Person {name: row.name, age: toInteger(row.age), city: row.city})
+
 ```
 This creates a "Person" node for each row in the "data.csv" file.
  
