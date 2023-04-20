@@ -129,6 +129,11 @@ MATCH (person:Person)
 WHERE person.name = 'Alice'
 RETURN person
 
+OR
+
+MATCH (person:Person {name: 'Alice'})
+RETURN person
+
 ```
 This returns all nodes labeled "Person" with the name "Alice".
 You can also use comparison operators and logical operators in the `WHERE` clause to specify more complex conditions:
@@ -247,19 +252,14 @@ This deletes the "WORKS_FOR" relationship between the node labeled "Person" with
 
 ### Importing and Exporting Data
 Neo4j also provides functionality for importing and exporting data to and from your graph database. This can be useful for migrating data between different environments, backing up your data, or importing data from external sources.
-To import data into Neo4j, you can use the `LOAD CSV` clause to load data from a CSV file:
+To import data into Neo4j, you can use the `LOAD CSV` clause to load data from a CSV file (The CSV file must be saved in the import folder of the neo4j data folder):
 ```sql
 LOAD CSV WITH HEADERS FROM 'file:///data.csv' AS row
 CREATE (:Person {name: row.name, age: toInteger(row.age), city: row.city})
 
 ```
 This creates a "Person" node for each row in the "data.csv" file.
-To export data from Neo4j, you can use the `neo4j-admin` command-line tool to create a backup of your database:
-```css
-neo4j-admin backup --backup-dir=/var/neo4j/backup --name=mydatabase
-
-```
-This creates a backup of the "mydatabase" database in the "/var/neo4j/backup" directory.
+ 
 
 ## Conclusion
 In this notebook, we have learned the basic concepts of Neo4j and how to use it to create, query, and manipulate graph data. We covered nodes, relationships, properties, querying data, filtering results, traversing relationships, aggregating data, and modifying data. With this knowledge, you should be able to start working with Neo4j and exploring the power of graph databases.
