@@ -254,7 +254,7 @@ This deletes the "WORKS_FOR" relationship between the node labeled "Person" with
 Neo4j also provides functionality for importing and exporting data to and from your graph database. This can be useful for migrating data between different environments, backing up your data, or importing data from external sources.
 To import data into Neo4j, you can use the `LOAD CSV` clause to load data from a CSV file (The CSV file must be saved in the import folder of the neo4j data folder):
 ```sql
-LOAD CSV WITH HEADERS FROM 'file:///data.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///data_neo4j.csv' AS row
 CREATE (:Person {name: row.name, age: toInteger(row.age), city: row.city})
 
 OR From a external URL
