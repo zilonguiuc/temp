@@ -179,7 +179,7 @@ RETURN COUNT(person), person.city
 This returns the number of nodes labeled "Person" for each unique value of the "city" property.
 ## Modifying Data
 In addition to querying data, you can also modify data in a Neo4j graph. You use the `CREATE`, `MERGE`, `SET`, and `DELETE` clauses to create, update, and delete nodes and relationships.
-### Creating Nodes and Relationships
+### Creating Nodes and Relationships usng merge (similar to if not exists in SQL)
 We already covered how to create nodes and relationships in Neo4j using the `CREATE` clause. You can also use the `MERGE` clause to create a node or relationship only if it does not already exist:
 ```css
 MERGE (person:Person {name: 'Alice'})
@@ -191,7 +191,23 @@ This creates a node labeled "Person" with the name "Alice", a node labeled "Comp
 
  
 
-### Using Labels and Properties in Queries
+### Updating Nodes and Relationships using SET
+You can use the `SET` clause to update the properties of a node or relationship:
+```css
+MATCH (person:Person {name: 'Alice'})
+SET person.age = 35
+
+```
+This updates the "age" property of the node labeled "Person" with the name "Alice" to 35.
+You can also use the `SET` clause to add or remove properties:
+```php
+MATCH (person:Person {name: 'Alice'})
+SET person.city = 'New York', person.age = 35
+
+```
+This adds a "city" property to the node labeled "Person" with the name "Alice" and sets it to "New York", and updates the "age" property to 35.
+
+### Updating Node Properties Based on Conditions in Neo4j with the SET Clause
 In addition to filtering and matching nodes by label and property values, you can also use these values in other parts of your query. For example, you can use the `SET` clause to update a property value based on another property value:
 ```sql
 MATCH (person:Person)
@@ -208,6 +224,7 @@ RETURN person.name AS name, person.age AS age
 
 ```
 This returns the "name" and "age" properties of all nodes labeled "Person" with a "city" property of "New York".
+
 ### Working with Date and Time Data
 Neo4j also supports date and time data types, which can be useful for working with time series data or event data. You can store date and time data as properties on nodes or relationships, and query and filter based on these values.
 For example, you can use the `datetime()` function to create a datetime value:
@@ -225,22 +242,6 @@ RETURN event.name
 ```
 This returns the name of all "Event" nodes with a "date" property between 6:00 PM and 6:00 AM on New Year's Eve.
 
-
-### Updating Nodes and Relationships
-You can use the `SET` clause to update the properties of a node or relationship:
-```css
-MATCH (person:Person {name: 'Alice'})
-SET person.age = 35
-
-```
-This updates the "age" property of the node labeled "Person" with the name "Alice" to 35.
-You can also use the `SET` clause to add or remove properties:
-```php
-MATCH (person:Person {name: 'Alice'})
-SET person.city = 'New York', person.age = 35
-
-```
-This adds a "city" property to the node labeled "Person" with the name "Alice" and sets it to "New York", and updates the "age" property to 35.
 ### Deleting Nodes and Relationships
 You use the `DELETE` clause to delete nodes and relationships:
 ```css
