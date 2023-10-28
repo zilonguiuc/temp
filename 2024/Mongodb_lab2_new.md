@@ -88,6 +88,49 @@ Output
 ```
 
 This will insert two new documents into the "products" collection with the "name", "price", and "category" fields set to the specified values.
+
+
+## Step 9: Update documents in the collection
+To update documents in the "products" collection, use the `db.products.updateOne()` or `db.products.updateMany()` method followed by a filter query and an update query. For example, to update the price of a single product in the "products" collection, run the following command:
+```bash
+db.products.updateOne(
+    {"name": "Product 1"},
+    {"$set": {"price": 15.0}}
+)
+
+```
+Output
+```css
+ {
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+```
+This will update the price of the "Product 1" document in the "products" collection to 15.0.
+
+## Step 10: Delete documents from the collection
+To delete documents from the "products" collection, use the `db.products.deleteOne()` or `db.products.deleteMany()` method followed by a filter query. For example, to delete a single product from the "products" collection, run the following command:
+```json
+db.products.deleteOne({"name": "Product 4"})
+
+```
+Output
+```json
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+```
+This will delete the "Product 4" document from the "products" collection.
+These are just some basic steps for creating a product database in MongoDB using the MongoDB shell. There are many more advanced features and techniques you can use with MongoDB and Pymongo to create more complex databases and applications.
+
+
+ 
+--------
+
 ## Step 8: Query the collection
 To query the "products" collection, use the `db.products.find()` method. For example, to retrieve all documents in the "products" collection, run the following command:
 ```lua
@@ -124,63 +167,6 @@ Output
 ```
 
 This will return a cursor to all documents in the "products" collection.
-## Step 9: Update documents in the collection
-To update documents in the "products" collection, use the `db.products.updateOne()` or `db.products.updateMany()` method followed by a filter query and an update query. For example, to update the price of a single product in the "products" collection, run the following command:
-```bash
-db.products.updateOne(
-    {"name": "Product 1"},
-    {"$set": {"price": 15.0}}
-)
-
-```
-Output
-```css
- {
-  acknowledged: true,
-  insertedId: null,
-  matchedCount: 1,
-  modifiedCount: 1,
-  upsertedCount: 0
-}
-```
-This will update the price of the "Product 1" document in the "products" collection to 15.0.
-## Step 10: Delete documents from the collection
-To delete documents from the "products" collection, use the `db.products.deleteOne()` or `db.products.deleteMany()` method followed by a filter query. For example, to delete a single product from the "products" collection, run the following command:
-```json
-db.products.deleteOne({"name": "Product 4"})
-
-```
-Output
-```json
-{
-  acknowledged: true,
-  deletedCount: 1
-}
-```
-This will delete the "Product 4" document from the "products" collection.
-These are just some basic steps for creating a product database in MongoDB using the MongoDB shell. There are many more advanced features and techniques you can use with MongoDB and Pymongo to create more complex databases and applications.
-
-
-## Step 11: Create an index on a field
-To create an index on a field in the "products" collection, use the `db.products.createIndex()` method followed by the name of the field you want to index. For example, to create an index on the "name" field in the "products" collection, run the following command:
-```json
-db.products.createIndex({"name": 1})
-
-```
-Output
-```json
-'name_1'
-```
-This will create an ascending index on the "name" field in the "products" collection.
-
---------
-Note: Indexes in MongoDB are similar to indexes in other databases, in that they help to improve the performance of queries by allowing the database to quickly locate the relevant data. An index is essentially a data structure that is created on one or more fields in a collection, which can be used to optimize queries on those fields.
-
-When you create an index on a field in MongoDB, the database creates a separate data structure that contains the indexed field's values, along with a reference to the document that contains each value. This index data structure is stored separately from the actual data in the collection, and is optimized for efficient lookups and sorting.
-
-When you query a collection, MongoDB will first check to see if there is an appropriate index available for the query. If there is, it will use the index to quickly locate the relevant documents and return the results. This can be much faster than scanning the entire collection for the relevant data, especially for large collections.
-
---------
 
 ## Step 12: Query with a filter and projection
 To query the "products" collection with a filter and projection, use the `db.products.find()` method followed by a filter query and a projection. For example, to retrieve the name and price of all products in the "Category 1" category, run the following command:
