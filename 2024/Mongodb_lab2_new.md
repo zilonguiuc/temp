@@ -1,8 +1,7 @@
   
 # MongoDB Lab 2 (Intermediate Lab) 
 
-This manual covers MongoDB basic CRUD operations
-
+# Part 1: Launch an MongoDB server
 
 ## Step 1: Install MongoDB Community Version
 The first step in creating a MongoDB database is to install MongoDB on your machine. You can download MongoDB from the official MongoDB website.
@@ -34,7 +33,15 @@ output
 ```
 
 This will create a new database called "productdb" if it does not already exist, or switch to the "productdb" database if it does exist.
-## Step 5: Create a new collection
+
+## Step 5: Delete a database
+To delete a database in MongoDB, use the `dropDatabase()` method on the database object. For example, to delete the "mydb" database, run the following command:
+```perl
+use productdb
+db.dropDatabase()
+```
+
+## Step 6: Create a new collection
 To create a new collection in MongoDB, use the `db.createCollection()` method followed by the name of the collection you want to create. For example, to create a new collection called "products", run the following command:
 ```arduino
 db.createCollection("products")
@@ -47,7 +54,7 @@ Output
 ```
 
 This will create a new collection called "products" in the "productdb" database.
-## Step 6: Insert data into the collection
+## Step 7: Insert data into the collection
 To insert data into the "products" collection, use the `db.products.insertOne()` method followed by a JSON object representing the data you want to insert. For example, to insert a new product into the "products" collection, run the following command:
 ```json
 db.products.insertOne({
@@ -66,7 +73,7 @@ Output
 ```
 
 This will insert a new document into the "products" collection with the "name", "price", and "category" fields set to the specified values.
-## Step 7: Insert multiple documents into the collection
+## Step 8: Insert multiple documents into the collection
 To insert multiple documents into the "products" collection, use the `db.products.insertMany()` method followed by an array of JSON objects representing the data you want to insert. For example, to insert two new products into the "products" collection, run the following command:
 ```json
 db.products.insertMany([    
