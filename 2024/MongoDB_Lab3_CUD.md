@@ -135,6 +135,86 @@ This will delete the "Product 4" document from the "products" collection.
 These are just some basic steps for creating a product database in MongoDB using the MongoDB shell. There are many more advanced features and techniques you can use with MongoDB and Pymongo to create more complex databases and applications.
 
 
+## Step 26: Rename a field
+To rename a field in a document in the "products" collection, use the `$rename` operator in the update query. For example, to rename the "category" field to "product_category" in a specific product document, run the following command:
+```bash
+db.products.updateOne(
+    {"name": "Product 1", "details.size": "small"},
+    {"$rename": {"category": "product_category"}}
+)
+
+```
+Output
+```bash
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+```
+
+This will rename the "category" field to "product_category" in the "Product 1" document with the "details.size" field set to "small".
+## Step 27: Remove a field
+To remove a field from a document in the "products" collection, use the `$unset` operator in the update query. For example, to remove the "details" sub-document from a specific product document, run the following command:
+```bash
+db.products.updateOne(
+    {"name": "Product 1", "details.size": "small"},
+    {"$unset": {"details": ""}}
+)
+
+```
+Output
+```bash
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+```
+This will remove the "details" sub-document from the "Product 1" document with the "details.size" field set to "small".
+
+Try print out all collection one more time use db.products.find(), you will see below
+```bash
+db.products.find()
+{
+  _id: ObjectId("6430782c92a85fbdb1811da3"),
+  name: 'Product 1',
+  price: 10,
+  product_category: 'Category 1'
+}
+{
+  _id: ObjectId("6430782c92a85fbdb1811da4"),
+  name: 'Product 2',
+  price: 20,
+  category: 'Category 2',
+  details: {
+    size: 'medium',
+    quantity: 10
+  }
+}
+{
+  _id: ObjectId("6430782c92a85fbdb1811da5"),
+  name: 'Product 3',
+  price: 30,
+  category: 'Category 3',
+  details: {
+    size: 'large',
+    quantity: 15
+  }
+}
+```
+
+## Step 28: Delete a collection
+To delete a collection from a database in MongoDB, use the `drop()` method on the collection object. For example, to delete the "products" collection from the current database, run the following command:
+```scss
+db.products.drop()
+
+```
+This will delete the "products" collection from the current database.
  
 --------
 ## In-Class Excise - Complete the following Step using the nba database
