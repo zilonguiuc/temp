@@ -1,5 +1,5 @@
   
-# MongoDB Lab 2 (Intermediate Lab) 
+# MongoDB Lab 4 (Intermediate Lab) 
 
 # Part 1: Launch an MongoDB server
 
