@@ -176,7 +176,7 @@ RETURN p.PLAYER_NAME;
 ### load player table, to add more attribute to player, and also team data to add more attributre
 join
 
-# Add relationship to show example. 
+# Add relationship to show example. (like Lebron and Waydes are friends, XX and XX are cousion)
 
 
 ## 7. Deleting records
