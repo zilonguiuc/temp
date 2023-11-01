@@ -13,13 +13,11 @@ These are standard CRUD (Create, Read, Update, Delete) operations and other fund
     - Configure the options accordingly and click `Import`.
 
 ## Displaying a Sample Document:
-
 ```
 db.player_game.findOne()
 ```
 
 ## Displaying a Few Documents:
-
 ```
 db.player_game.find().limit(5)
 ```
@@ -90,7 +88,6 @@ db.player_game.aggregate([
 ])
 
 ```
-
 ## Categorical Variables:
 **This groups the data by starting position (START_POSITION) and provides a count of occurrences for each position**
 ```
@@ -131,7 +128,7 @@ db.player_game.aggregate([
 ```
 
 
-## Text Search:  ]
+## Text Search:  
 **The first line creates a text index on the COMMENT field. The second query is a placeholder to find documents with a specific text "coach" within the COMMENT field**
 
 db.games.createIndex({ COMMENT: "text" })
@@ -249,8 +246,3 @@ db.dropDatabase()
 ```
  
 
- 
-db.insertone
-
-delete ranking collection
-db.your_collection_name.drop()
