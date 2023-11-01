@@ -144,6 +144,13 @@ MATCH (p:Player)
 WHERE NOT (p)-[:PLAYS_FOR]->(:Team)
 RETURN p.PLAYER_NAME;
 
+
+
+## load player table, to add more attribute to player, and also team data to add more attributre
+join
+
+
+
 To delete all players in a specific team
 MATCH (p:Player)-[:PLAYS_FOR]->(t:Team)
 WHERE t.TEAM_ID = 'YourTeamIDHere'
