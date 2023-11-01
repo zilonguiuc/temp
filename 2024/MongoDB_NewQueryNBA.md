@@ -87,16 +87,81 @@ db.player_game.aggregate([
 
 Categorical Variables:
 ```
-db.games.aggregate([
+db.player_game.aggregate([
   {
     $group: {
-      _id: "$HOME_TEAM_ID",
+      _id: "$START_POSITION",
       count: { $sum: 1 }
+    }
+  }
+])
+
+```
+
+## Advanced Query Operations:
+Aggregations:
+```
+db.player_game.aggregate([
+  {
+    $group: { 
+        _id: "$TEAM_ID", 
+        avg_points_per_team: { $avg: "$PTS" } 
     }
   }
 ])
 ```
 
 
-Data Manipulation Operations:
+Adding New Fields:
+```
+db.player_game.aggregate([
+  {
+    $addFields: {
+        total_attempts: { $add: ["$FGA", "$FG3A", "$FTA"] }
+    }
+  }
+])
+```
+
+
+
+
+
+
+## Data Manipulation Operations:
 Operations that modify the underlying data.
+
+### Handling Missing Data:
+For example, handling missing data in points field (PTS):
+```
+db.player_game.aggregate([
+  {
+    $project: {
+        GAME_ID: 1,
+        PLAYER_NAME: 1,
+        PTS: { $ifNull: ["$PTS", 0] }
+    }
+  }
+])
+```
+
+Deleting Documents:
+Deleting players with less than 5 points:
+
+db.player_game.deleteMany({ PTS: { $lt: 5 } })
+
+
+Renaming Fields:
+For example, renaming PLAYER_NAME to player:
+db.player_game.updateMany({}, { $rename: { "PLAYER_NAME": "player" } })
+
+Upserting:
+Updating or inserting a record based on GAME_ID and PLAYER_ID:
+db.player_game.updateOne({ GAME_ID: "21900895", PLAYER_ID: "202083" }, { $set: { PTS: 15 } }, { upsert: true })
+
+Delete collection:
+db.player_game.
+
+
+Diagnostics:
+db.player_game.find({ PTS: { $gt: 20 } }).explain()
