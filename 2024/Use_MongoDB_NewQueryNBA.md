@@ -48,7 +48,6 @@ db.player_game.find({ PTS_home: { $gt: 20, $lt: 30 } })
 ```
 db.player_game.find({ start_position: "C" })
 ```
-
 ### Query result with and OR
 **Find Players who Scored More than 20 Points and had More than 5 Blocks in a Game**
 ```
@@ -68,7 +67,9 @@ db.player_game.find({ PTS: { $gt: 20 } }, { PLAYER_NAME: 1, PTS: 1 })
 
 ### Sort
 **retrieves the top 5 scoring games based on the points (PTS) in descending order.**
+```
 db.player_game.find({}).sort({ PTS: -1 }).limit(5)
+```
 
  
 ## Data Summary:
@@ -177,14 +178,14 @@ db.player_game.updateOne({ GAME_ID: "21900895", PLAYER_ID: "202083" }, { $set: {
 ```
 db.games.insertOne({
     GAME_ID: "12345678",
-    TEAM_ID:
-    PLAYER_ID: 
-    PTS: 105
+    TEAM_ID: 101
+    PLAYER_ID: 101
+    PTS: 10
     location: {
-        stadium: "NBA Arena",
-        city: "NBA City",
-        state: "NBA State",
-        zip: "12345"
+        stadium: "Progressive Arena",
+        city: "ClevelandCleveland",
+        state: "OH",
+        zip: "61822"
     }
 })
 ```
@@ -192,49 +193,57 @@ db.games.insertOne({
 ### Query Nested Documents: 
 **finds games played in "NBA City".**
 ```
-db.games.find({ "location.city": "NBA City" })
+db.games.find({ "location.city": "ClevelandCleveland" })
 ```
 ### Diagnostics:
 **This explains the query plan for fetching players who scored more than 20 points.**
 db.player_game.find({ PTS: { $gt: 20 } }).explain()
 
-### join with other table
-**This joins the games collection with the teams collection based on HOME_TEAM_ID and team_id and places the result in the home_team_details array.**
+### Join with another collection
+**First create another collection called team and load the data.**
+
+
+**Joins the player_game collection with the team  collection based on team_id and places the result in the player_team_details array.**
 ```
 db.games.aggregate([
   {
     $lookup: {
-        from: "teams",
-        localField: "HOME_TEAM_ID",
+        from: "team",
+        localField: "team_id",
         foreignField: "team_id",
-        as: "home_team_details"
+        as: "player_team_details"
     }
   }
 ])
 ```
 
-## Create an new database called NBAcopy;
+# Create and drop database
+## Create an new database called NBA2;
 ```
-use NBAcopy
+use NBA2
 ```
 
-## Create an new collection within the same database and called ranking.
+## Create an new collection within the NBA2 database and called ranking.
 ```
 db.createCollection("ranking")
 ```
 
-## Insert one record
+## Insert one record for Lakers
+```
+db.ranking.insertOne({
+    "team": "Lakers",
+    "winning_ratio": 0.7,
+    "conference": "western"
+})
 ```
 
-```
-
-### Delete entire collection:
+## Delete entire collection:
 **This deletes the player_game collections**
 ```
 db.ranking.drop()
 ```
 
-### Delete the NBAcopy database
+## Delete the NBA2 database
 ```
 db.dropDatabase()
 ```
