@@ -3,11 +3,13 @@
 
 ### Import Data
 **Import the data into Neo4j as nodes with label Player, and each player has a relationship PLAYS_FOR to a node with label Team.**
+```
 LOAD CSV WITH HEADERS FROM 'file:///player_team.csv' AS line
 MERGE (p:Player {PLAYER_ID: line.PLAYER_ID})
 SET p.PLAYER_NAME = line.PLAYER_NAME, p.SEASON = toInteger(line.SEASON)
 MERGE (t:Team {TEAM_ID: line.TEAM_ID})
 MERGE (p)-[:PLAYS_FOR]->(t);
+```
 
 ## 2.Basic Query
 ### Displaying a Sample Record:
@@ -178,14 +180,17 @@ join
 
 ## 7. Deleting records
 **To delete all players in a specific team**
+```
 MATCH (p:Player)-[:PLAYS_FOR]->(t:Team)
 WHERE t.TEAM_ID = 'YourTeamIDHere'
 DETACH DELETE p;
+```
 
 **To delete all player nodes and its associated relationship**
+```
 MATCH (p:Player)
 DETACH DELETE p
-
+```
 
 **To delete all nodes in Neo4j, you need to be cautious as this will remove all your data. Here's the query to delete all nodes and relationships:**
 ```
