@@ -213,15 +213,30 @@ db.games.aggregate([
 ])
 ```
 
+## Create an new database called NBAcopy;
+```
+use NBAcopy
+```
+
 ## Create an new collection within the same database and called ranking.
 ```
 db.createCollection("ranking")
+```
+
+## Insert one record
+```
+
 ```
 
 ### Delete entire collection:
 **This deletes the player_game collections**
 ```
 db.ranking.drop()
+```
+
+### Delete the NBAcopy database
+```
+db.dropDatabase()
 ```
 
 use zz
