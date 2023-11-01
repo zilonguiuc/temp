@@ -3,6 +3,15 @@ These are standard CRUD (Create, Read, Update, Delete) operations and other fund
 
 ## Loading Data into MongoDB
 
+1. **Connect to your MongoDB instance using Compass.**
+2. **Select the desired database**, or create a new one.
+3. **Select the desired collection**, or create a new one.
+4. **Add Data**: 
+    - Once inside the collection, you'll see an `ADD DATA` dropdown on the right side.
+    - Click it and select `Import File`.
+5. **Choose the data file** (JSON or CSV) you want to import. 
+    - Configure the options accordingly and click `Import`.
+
 ## Displaying a Sample Document:
 
 ```
