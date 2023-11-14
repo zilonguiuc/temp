@@ -105,8 +105,8 @@ WHERE team_id = 1610612999;
 This removes the 'Dragons' team from the table.
  
 
-Step 7: Querying and Manipulating Data
-Objective: Execute various queries and data manipulations.
+## Step 7: Querying and Manipulating Data
+### Objective: Execute various queries and data manipulations.
 Examples of Hive Queries:
 Simple query to list all teams:
 ``` 
@@ -119,17 +119,36 @@ SELECT r.team, r.w, r.l, t.city, t.arena
 FROM nba_ranking r
 JOIN nba_team t ON r.team_id = t.team_id;
 ```
+ 
+Identify the win ratio of each team on the latest day of each season, and creating a Temporary Table to Save Query Results
+``` 
+CREATE TABLE temp_latest_season_win_ratio AS
+SELECT nr.season_id, nr.team_id, nr.team, nr.w_pct
+FROM nba_ranking nr
+INNER JOIN (
+    SELECT team_id, season_id, MAX(standingsdate) as latest_date
+    FROM nba_ranking
+    GROUP BY team_id, season_id
+) max_dates ON nr.team_id = max_dates.team_id AND nr.season_id = max_dates.season_id AND nr.standingsdate = max_dates.latest_date;
 
-Advanced queries involving group by, order by, etc.
+```
 
-##Step 8: Cleanup and Close
+Based on prior query results, determine the team with the highest win ratio for each season.
+```
+SELECT t.season_id, t.team_id, t.team, t.w_pct
+FROM (
+    SELECT season_id, MAX(w_pct) as max_w_pct
+    FROM temp_latest_season_win_ratio
+    GROUP BY season_id
+) as max_wins
+JOIN temp_latest_season_win_ratio t ON max_wins.season_id = t.season_id AND max_wins.max_w_pct = t.w_pct;
+```
+ 
+
+## Step 8: Cleanup and Close
 ### Objective: Properly end the session and clean up if necessary.
-Commands:
-Exit Hive shell:
-bash
-Copy code
+Commands- Exit Hive shell:
+``` 
 exit;
-Additional Notes:
-Customization: Modify the table creation queries based on the exact structure of your CSV files.
-Error Handling: Ensure students know how to troubleshoot common errors in Hive and Hadoop.
-Practice: Include exercises that require students to write their own Hive queries.
+```
+ 
