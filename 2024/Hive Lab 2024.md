@@ -168,8 +168,10 @@ For Player Data:
 For Player-Team Data:
 
 ### Task 5. Modify Data
-Updating Player Information:Assume that there's a need to update the weight of a specific player due to incorrect data entry. For instance, let's say the weight of the player named "Aaron Gordon" needs to be corrected to 100 kg.
-
+a. Updating Player Information:Assume that there's a need to update the weight of a specific player due to incorrect data entry. For instance, let's say the weight of the player named "Aaron Gordon" needs to be corrected to 100 kg.
+b. Insert a New Record: Add a new player record named "Mike Z", the record data is below 
+('Mike Z', 200, 90, 'UIUC', 'USA', '2020', '1', '10', 999999);
+c. Delete a Record: Remove a player record named Mike Z
 
 
 ### Task 6. Query Data
