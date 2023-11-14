@@ -144,7 +144,6 @@ FROM (
 JOIN temp_latest_season_win_ratio t ON max_wins.season_id = t.season_id AND max_wins.max_w_pct = t.w_pct;
 ```
  
-
 ## Step 8: Cleanup and Close
 ### Objective: Properly end the session and clean up if necessary.
 Commands- Exit Hive shell:
