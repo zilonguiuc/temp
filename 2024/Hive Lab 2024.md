@@ -75,12 +75,35 @@ For the Team Data:
 LOAD DATA INPATH '/user/[username]/nba_data/team.csv' INTO TABLE nba_team;
 ```
 
-## Step 6: Insert record, update, delete record
-### Objective: Modify the Hive Tables
-1. Add one record into team table
+## Step 6: Modify Hive Tables
+### Part 1: Adding a Record to the nba_team Table
+###  Objective: Insert a new team record called "Dragons" into the nba_team table.
+Hive Query:
+```
+INSERT INTO nba_team 
+VALUES (0, 1610612999, 2023, 2023, 'DGN', 'Dragons', 2023, 'Imaginary City', 'Dragon Arena', '20000', 'John Doe', 'Jane Smith', 'Alex Johnson', 'Imaginary D-League');
+```
+This query adds a new team with made-up details.
 
-2. Delete one 
-
+### Part 2: Updating a Record in the nba_team Table
+### Objective: Update the arena name of the "Dragons" team.
+Hive Query:
+```
+UPDATE nba_team 
+SET arena = 'New Dragon Arena'
+WHERE team_id = 1610612999 AND nickname = 'Dragons';
+```
+This updates the 'Dragons' team's arena name to 'New Dragon Arena'.
+ 
+### Part 3: Deleting a Record from the nba_team Table
+#### Objective: Delete the record of the "Dragons" team.
+Hive Query:
+```
+DELETE FROM nba_team 
+WHERE team_id = 1610612999;
+```
+This removes the 'Dragons' team from the table.
+ 
 
 Step 7: Querying and Manipulating Data
 Objective: Execute various queries and data manipulations.
