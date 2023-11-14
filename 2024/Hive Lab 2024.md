@@ -107,20 +107,20 @@ This removes the 'Dragons' team from the table.
 
 ## Step 7: Querying and Manipulating Data
 ### Objective: Execute various queries and data manipulations.
-Examples of Hive Queries:
-Simple query to list all teams:
+
+a. Simple query to list all teams:
 ``` 
 SELECT * FROM nba_team;
 ```
 
-Join query between ranking and team data:
+b. Join query between ranking and team data:
 ```
 SELECT r.team, r.w, r.l, t.city, t.arena
 FROM nba_ranking r
 JOIN nba_team t ON r.team_id = t.team_id;
 ```
  
-Identify the win ratio of each team on the latest day of each season, and creating a Temporary Table to Save Query Results
+c. Identify the win ratio of each team on the latest day of each season, and creating a Temporary Table to Save Query Results
 ``` 
 CREATE TABLE temp_latest_season_win_ratio AS
 SELECT nr.season_id, nr.team_id, nr.team, nr.w_pct
@@ -133,7 +133,7 @@ INNER JOIN (
 
 ```
 
-Based on prior query results, determine the team with the highest win ratio for each season.
+d. Based on prior query results, determine the team with the highest win ratio for each season.
 ```
 SELECT t.season_id, t.team_id, t.team, t.w_pct
 FROM (
@@ -150,4 +150,32 @@ Commands- Exit Hive shell:
 ``` 
 exit;
 ```
+---------------------------------------------------------------------------------
+## In-Class Exercise: Hive Querying with NBA Player and Player-Team Data
+## Exercise Setup:
+### Task 1. Downloading Data
+### Objective: Retrieve the NBA player and player-team data files from GitHub.
+
+### Task 2.Uploading Data to HDFS
+### Objective: Store the downloaded data in HDFS.
+ 
+### Task 3. Creating Tables in Hive
+For Player Data (nba_player):
+For Player-Team Data (player_team):
+ 
+### Task 4. Loading Data into Hive Tables
+For Player Data:
+For Player-Team Data:
+
+### Task 5. Modify Data
+Updating Player Information:Assume that there's a need to update the weight of a specific player due to incorrect data entry. For instance, let's say the weight of the player named "Aaron Gordon" needs to be corrected to 100 kg.
+
+
+
+### Task 6. Query Data
+### Query 1:   Find the average height and weight of players for each team for the 2019 season.
+### Query 2: Determine the tallest player for each NBA team for the 2019 season.
+
+
+
  
