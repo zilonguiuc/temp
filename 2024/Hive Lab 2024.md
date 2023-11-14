@@ -1,24 +1,24 @@
 ## Step 1: Downloading Data from GitHub
 ### Objective: Retrieve the NBA data files from GitHub.
-
+```
 wget [URL_of_ranking.csv]
 wget [URL_of_team.csv]
-
+```
 ## Step 2: Uploading Data to HDFS (Hadoop Distributed File System)
 ### Objective: Store the downloaded data in HDFS.
- 
+``` 
 hdfs dfs -mkdir /user/[username]/nba_data
 hdfs dfs -put ranking.csv /user/[username]/nba_data/ranking.csv
 hdfs dfs -put team.csv /user/[username]/nba_data/team.csv
-
+```
  
 ## Step 3: Setting Up Hive
 ### Objective: Prepare the Hive environment for data manipulation.
 Activities:Start Hive shell:
-
+```
 hive
-
-##Step 4: Creating Tables in Hive
+```
+## Step 4: Creating Tables in Hive
 ### Objective: Create Hive tables to store the NBA data.
  
 1. For the Ranking Data:
@@ -61,33 +61,46 @@ CREATE TABLE nba_team (
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE;
-Step 5: Loading Data into Hive Tables
-Objective: Populate the Hive tables with data from HDFS.
+```
+
+## Step 5: Loading Data into Hive Tables
+### Objective: Populate the Hive tables with data from HDFS.
 Hive Commands:
 For the Ranking Data:
-sql
-Copy code
+``` 
 LOAD DATA INPATH '/user/[username]/nba_data/ranking.csv' INTO TABLE nba_ranking;
+```
 For the Team Data:
-sql
-Copy code
+```
 LOAD DATA INPATH '/user/[username]/nba_data/team.csv' INTO TABLE nba_team;
-Step 6: Querying and Manipulating Data
+```
+
+## Step 6: Insert record, update, delete record
+### Objective: Modify the Hive Tables
+1. Add one record into team table
+
+2. Delete one 
+
+
+Step 7: Querying and Manipulating Data
 Objective: Execute various queries and data manipulations.
 Examples of Hive Queries:
 Simple query to list all teams:
-sql
-Copy code
+``` 
 SELECT * FROM nba_team;
+```
+
 Join query between ranking and team data:
-sql
-Copy code
+```
 SELECT r.team, r.w, r.l, t.city, t.arena
 FROM nba_ranking r
 JOIN nba_team t ON r.team_id = t.team_id;
+```
+
 Advanced queries involving group by, order by, etc.
-Step 7: Cleanup and Close
-Objective: Properly end the session and clean up if necessary.
+
+##Step 8: Cleanup and Close
+### Objective: Properly end the session and clean up if necessary.
 Commands:
 Exit Hive shell:
 bash
